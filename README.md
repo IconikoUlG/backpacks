@@ -1,4 +1,7 @@
 # Working Backpacks
+
+![PMC Page](https://static.planetminecraft.com/files/image/minecraft/data-pack/2024/903/17751145-pmc-cover-backpacks_l.webp)
+
 https://www.planetminecraft.com/data-pack/backpacks-4834903/
 
 Working Backpacks datapack for 1.17+
