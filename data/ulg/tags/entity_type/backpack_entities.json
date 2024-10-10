@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:player",
+    "minecraft:item",
+    "minecraft:item_frame",
+    "minecraft:armor_stand",
+    "minecraft:interaction"
+  ]
+}

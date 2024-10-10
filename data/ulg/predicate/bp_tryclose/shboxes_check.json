@@ -1,0 +1,302 @@
+{
+    "condition": "minecraft:any_of",
+    "terms": [
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.9": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.10": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.11": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.12": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.13": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.14": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.15": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.16": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.17": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.18": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.19": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.20": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.21": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.22": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.23": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.24": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.25": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.26": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },{
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.27": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.28": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.29": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.30": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.31": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.32": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.33": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.34": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.35": {
+              "items": "#ulg:shulker_boxes"
+            }
+          }
+        }
+      }
+    ]
+  }
+  

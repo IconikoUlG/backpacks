@@ -1,0 +1,37 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": "{ulg:{BackPack:{Inventory:[],CustomModelData:822300,Opened:false,newV:true}}}"
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 822300
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            },
+            {
+              "function": "minecraft:set_name",
+              "entity": "this",
+              "target": "custom_name",
+              "name": {
+                "translate": "ulg.item.backpack",
+                "color": "gold",
+                "italic": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

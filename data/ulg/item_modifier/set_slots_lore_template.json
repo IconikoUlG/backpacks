@@ -1,0 +1,36 @@
+[{
+  "function": "minecraft:set_lore",
+  "lore": [
+    [
+      {
+        "translate": "stat.itemsButton",
+        "fallback": "Items: ",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": " 0/27",
+        "color": "gray",
+        "italic": false
+      }
+    ]
+  ],
+  "mode": "replace_section",
+  "offset": 0,
+  "size": 1
+},
+{
+    "function": "minecraft:copy_custom_data",
+    "source": {
+      "type": "minecraft:storage",
+      "source": "ulg:macro"
+    },
+    "ops": [
+      {
+        "source": "set_lore.packet.newSize",
+        "target": "ulg.BackPack.loreSize",
+        "op": "replace"
+      }
+    ]
+  }
+]

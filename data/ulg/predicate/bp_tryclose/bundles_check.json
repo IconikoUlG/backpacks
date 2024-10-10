@@ -1,0 +1,302 @@
+{
+    "condition": "minecraft:any_of",
+    "terms": [
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.9": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.10": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.11": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.12": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.13": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.14": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.15": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.16": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.17": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.18": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.19": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.20": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.21": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.22": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.23": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.24": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.25": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.26": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },{
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.27": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.28": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.29": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.30": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.31": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.32": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.33": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.34": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      },
+      {
+        "condition": "minecraft:entity_properties",
+        "entity": "this",
+        "predicate": {
+          "slots": {
+            "container.35": {
+              "items": "minecraft:bundle"
+            }
+          }
+        }
+      }
+    ]
+  }
+  

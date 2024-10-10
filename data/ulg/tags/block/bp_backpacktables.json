@@ -1,0 +1,6 @@
+{
+    "values": [
+        "minecraft:crafting_table",
+        "#backpack_config:tables"
+    ]
+}

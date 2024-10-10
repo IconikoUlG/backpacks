@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#S#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "S": {
+            "item": "minecraft:black_dye"
+        }
+    },
+    "result": {
+        "id": "minecraft:carrot_on_a_stick",
+        "count": 1,
+        "components": {
+          "minecraft:custom_model_data": 822310,
+          "minecraft:custom_data": "{ulg:{BackPack:{Inventory:[],CustomModelData:822310,Opened:false,newV:true}}}",
+          "minecraft:custom_name": "{\"translate\": \"ulg.item.backpack.black\",\"color\": \"gold\",\"italic\": false}"
+        }
+      }
+}

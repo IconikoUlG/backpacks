@@ -1,0 +1,1 @@
+return run function ulg:backpack/sub/table_modify/sub/can_modify_macro with storage ulg:macro table_modify 

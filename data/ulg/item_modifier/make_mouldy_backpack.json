@@ -1,0 +1,27 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        {
+          "translate": "ulg.lore.oldversionbackpack",
+          "color": "red",
+          "italic": false
+        }
+      ],
+      "mode": "replace_all"
+    },
+    {
+      "function": "minecraft:set_custom_model_data",
+      "value": 822344
+    },
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "translate": "ulg.item.backpack.mouldy",
+        "color": "gray",
+        "italic": true
+      }
+    }
+  ]
+  

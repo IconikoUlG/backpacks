@@ -1,0 +1,45 @@
+[
+  {
+    "function": "minecraft:copy_custom_data",
+    "source": {
+      "type": "minecraft:storage",
+      "source": "ulg:backpack"
+    },
+    "ops": [
+      {
+        "source": "true",
+        "target": "ulg.BackPack.isLoreInit",
+        "op": "replace"
+      }
+    ]
+  },
+  {
+    "function": "minecraft:copy_custom_data",
+    "source": {
+      "type": "minecraft:storage",
+      "source": "ulg:backpack"
+    },
+    "ops": [
+      {
+        "source": "first_lore_size",
+        "target": "ulg.BackPack.loreSize",
+        "op": "replace"
+      }
+    ]
+  },
+  {
+    "function": "minecraft:set_lore",
+    "lore": [
+      [
+        {
+          "translate": "mco.configure.world.slot.empty",
+          "fallback": "Empty",
+          "color": "gray",
+          "italic": false
+        }
+      ]
+    ],
+    "mode": "insert",
+    "offset": 0
+  }
+]
