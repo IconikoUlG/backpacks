@@ -1,0 +1,7 @@
+from ./backpacks import getAll, getRecipes
+
+def getBackpack(id : str):
+    for bp in getAll():
+       if bp.Id() == id:
+            return bp
+

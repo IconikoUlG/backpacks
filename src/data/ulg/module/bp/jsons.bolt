@@ -1,0 +1,127 @@
+import secrets
+import string
+
+def IM_append_slots_lore():
+    return defineIM([
+        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "true", "target": "bp.isLoreInit", "op": "replace"}]},
+        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "first_lore_size", "target": "bp.loreSize", "op": "replace"}]},
+        {"function": "minecraft:set_lore", "lore": [[{"translate": "mco.configure.world.slot.empty", "fallback": "Empty", "color": "gray", "italic": false}]], "mode": "insert", "offset": 0}
+    ])
+
+def IM_make_mouldy():
+    from ./backpacks/access import getBackpack
+    mouldy_backpack = getBackpack('mouldy')
+    return defineIM([
+        {"function": "minecraft:set_components", "components": {"minecraft:item_model": mouldy_backpack.ItemModelPath()}},
+        {"function": "minecraft:set_lore", "entity": "this", "lore": [{"translate": "ulg.lore.oldversionbackpack", "color": "red", "italic": false}], "mode": "replace_all"},
+        {"function": "minecraft:set_name", "name": {"translate": mouldy_backpack.Translation(), "color": "gray", "italic": true}}
+    ])
+
+def IM_set_open():
+    return defineIM([
+        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "true", "target": "bp.Opened", "op": "replace"}]},
+        {"function": "minecraft:set_custom_model_data", "strings": {"values": ["opened"], "mode": "replace_all"}}
+    ])
+
+def IM_set_close():
+    return defineIM([
+        {"function": "minecraft:set_custom_model_data", "strings": {"values": ["closed"], "mode": "replace_all"}},
+        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "false", "target": "bp.Opened", "op": "replace"}]}
+    ])
+
+def IM_set_inventory():
+    return defineIM([
+        {
+            "function": "minecraft:copy_custom_data",
+            "source": {"type": "minecraft:storage", "source": "ulg:backpack"},
+            "ops": [{"source": "intick.BackPackInventory", "target": "bp.Inventory", "op": "replace"}]
+        }
+    ])
+
+def IM_set_slots_lore_template():
+    return defineIM([
+        {
+            "function": "minecraft:set_lore",
+            "lore": [[{"translate": "stat.itemsButton", "fallback": "Items: ", "color": "gray", "italic": false}, {"text": " 0/27", "color": "gray", "italic": false}]],
+            "mode": "replace_section",
+            "offset": 0,
+            "size": 1
+        },
+        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:macro"}, "ops": [{"source": "set_lore.packet.newSize", "target": "bp.loreSize", "op": "replace"}]}
+    ])
+
+def P_bp_in_offhand():
+    return defineP({"condition": "minecraft:entity_properties", "entity": "this", "predicate": {"equipment": {"offhand": {"components": {"minecraft:custom_data": {"bp": {"Opened": true}}}}}}})
+
+def P_is_sneaking():
+    return defineP({"condition": "minecraft:entity_properties", "entity": "this", "predicate": {"is_sneaking": true}})
+
+def __buildItemCheckInInventoryPredicate(containerData):
+    terms = []
+    for n in range(9,36):
+        terms.append({
+            "condition": "minecraft:entity_properties", "entity": "this", "predicate": {
+                "slots": {f"container.{n}": containerData}
+                }
+            })
+    return {
+        "condition": "minecraft:any_of",
+        "terms": terms
+    }
+
+def _P_backpacks_check():
+    return defineP(__buildItemCheckInInventoryPredicate({"predicates": {"minecraft:custom_data": "{bp:{}}"}}))
+
+def _P_bundles_check():
+    return defineP(__buildItemCheckInInventoryPredicate({"items": "#minecraft:bundles"}))
+
+def _P_shulker_boxes_check():
+    return defineP(__buildItemCheckInInventoryPredicate({"items": "#minecraft:shulker_boxes"}))
+
+def P_boxes_check():
+    return defineP({
+        "condition": "minecraft:any_of",
+        "terms": [
+            {"condition": "minecraft:reference","name": _P_backpacks_check()},
+            {"condition": "minecraft:reference","name": _P_bundles_check()},
+            {"condition": "minecraft:reference","name": _P_shulker_boxes_check()}
+        ]
+    })
+
+def defineP(obj):
+    jdef = __associate(obj)
+    predicate jdef[0] jdef[1]
+    return jdef[0]
+
+def defineIM(obj):
+    jdef = __associate(obj)
+    item_modifier jdef[0] jdef[1]
+    return jdef[0]
+
+def __associate(obj, length=12):
+    import json
+    import hashlib
+    import string
+
+    def serialize_object(obj):
+        return json.dumps(obj, sort_keys=True)
+
+    def hash_object(obj):
+        return hashlib.sha256(serialize_object(obj).encode()).hexdigest()
+
+    def encode_hash(hash_str, length):
+        chars = string.ascii_letters + string.digits
+        base = len(chars)
+        num = int(hash_str, 16)
+        encoded = []
+        
+        for _ in range(length):
+            encoded.append(chars[num % base])
+            num //= base
+
+        return ''.join(encoded)
+
+    return (
+        (./j)+'/'+str(encode_hash(hash_object(obj), length).lower()),
+        obj
+        )

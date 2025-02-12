@@ -1,0 +1,34 @@
+name: Backpacks x 1.21.4
+id: bp
+author: UltroGhast
+description: "Working Backpacks"
+require:
+  - bolt
+data_pack:
+  load:
+    - src/
+  pack_format: 61
+  zipped: false
+resource_pack:
+  load:
+    - src/
+  pack_format: 46
+  zipped: false
+pipeline:
+  - bolt_import
+  - mecha
+  - beet.contrib.copy_files
+  - ulgpost
+output: .out
+meta:
+  bolt_import:
+    root: 'ulg:bp'
+  bolt:
+    entrypoint: "*"
+  copy_files:
+    resource_pack:
+      assets/minecraft/textures/ulg_bp: src/assets/textures
+      assets/ulg_bp/lang: src/assets/lang
+      assets/minecraft/atlases/blocks.json : src/assets/textures/atlas.json
+      # assets/ulg/models/bp: src/assets/models
+      # assets/ulg/items/bp: src/assets/items

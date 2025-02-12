@@ -1,0 +1,330 @@
+def __Model(model_id, layers, direct_transform={}):
+    """
+    Build a model compound dictionary.
+    
+    :param model_id: (str) The unique identifier for the model.
+    :param layers: (list of tuples) Each tuple should be (label, accepts) where accepts is a list.
+    :param direct_transform: (dict, optional) Mapping of items to transformation details.
+    :return: (dict) Model compound dictionary.
+    """
+    result = {
+    "id": model_id
+    }
+    if direct_transform:
+        result["directTransform"] = direct_transform
+    else:
+        result["directTransform"] = {}
+    layers_list = []
+    for layer in layers:
+        layer_dict = {
+            "label": layer.label,
+            "accepts": layer.accepts
+        }
+        layers_list.append(layer_dict)
+    result["layers"] = layers_list
+    return result
+
+def _packRgb(r, g, b):
+    return (r << 16) + (g << 8) + b
+
+def __IGroup(group_id, defaultForce=50, **values):
+    """
+    Build an item group dictionary with automatic RGB calculation.
+    
+    :param group_id: (str) The unique identifier for the item group.
+    :param values: (dict) Mapping of item names to (R, G, B, force) tuples.
+    :return: (dict) Item group dictionary.
+    """
+
+    result = {
+    "id": group_id,
+    "values": []
+    }
+
+    for item, rgb_values in values.items():
+        value_dict = {
+            "item": item.replace("minecraft_", "minecraft:"),
+            "rgb": _packRgb(*rgb_values[:3]),
+            "rgbValues": rgb_values[:3]
+        }
+
+        if len(rgb_values) > 3:
+            value_dict["force"] = rgb_values[3]
+        else:
+            value_dict["force"] = defaultForce
+
+        result["values"].append(value_dict)
+
+    return result
+
+def __buildModifs():
+    import backpacks/access as backpacks
+    from backpacks/classes import mc_colors_formatted
+    MODIFS = {
+        "backpackModels": [
+            # __Model(
+            #     "ulg:backpack/camping",
+            #     [
+            #         ("Body", ["dyes"]),
+            #         ("Stripes", ["dyes"]),
+            #         ("Big Pocket", ["dyes"]),
+            #         ("Side Pockets", ["dyes"]),
+            #         ("Tent", ["carpets"]),
+            #         ("Details", ["ores"])
+            #     ]
+            # )
+        ],
+        "itemGroups": [
+            __IGroup(
+                "dyes",
+                defaultForce=60,
+                **mc_colors_formatted("minecraft:{color}_dye")
+            ),
+            __IGroup("ores", defaultForce=100,
+                minecraft_iron_ingot=(240, 249, 255), minecraft_gold_ingot=(255, 215, 0),
+                minecraft_iron_nugget=(240, 249, 255, 60), minecraft_gold_nugget=(255, 215, 0, 60),
+                minecraft_amethyst_shard=(204, 51, 255, 80), minecraft_prismarine_crystals=(38, 230, 255, 80)
+            ),
+            __IGroup("carpets", defaultForce=95,
+                **mc_colors_formatted("minecraft:{color}_carpet")
+            )
+        ]
+    }
+
+    def layerToModifs(l):
+        return l.modifs
+
+    for bp in backpacks.getAll():
+        layers = bp.ModelLayers()
+        if (layers):
+            MODIFS["backpackModels"].append(
+                __Model(
+                    bp.Id(),
+                    list(map(layerToModifs,layers)),
+                    bp.DirectTransform()
+                )
+            )
+    return MODIFS
+
+TOGGLES = {
+    "CAN_PLACE_BACKPACKS": [1, 1],
+    "CAN_MODIFY_BACKPACKS": [1, 1],
+    "BACKPACK_LORE_MODE": [1, 1],
+    "TABLE_BACKPACKS_TICK": [1, 1],
+    "NO_BOX_CHEAT": [1, 1]
+}
+
+def load():
+    execute run function bpconfig:setup_toggles:
+        _loadToggles()
+    execute run function bpconfig:table_modifs:
+        _loadTableModifs()
+    function bpconfig:force_toggles:
+        raw ### TOGGLES ###
+        raw #
+        for key, value in TOGGLES.items():
+            scoreboard players set ('$'+key) ulg_gen value[0]
+            raw f"#{str(value[0])} is the default value for this toggle. Change is as needed"
+            raw #
+
+    _writejsons()
+
+def _loadToggles():
+    for key, value in TOGGLES.items():
+        execute unless score ('$'+key+"_V") ulg_gen matches (str(value[1])+"..") run scoreboard players set ('$'+key) ulg_gen (value[0])
+        scoreboard players set ('$'+key+"_V") ulg_gen value[1]
+
+def _loadTableModifs():
+    data modify storage ulg:backpack table_modifs set value (__buildModifs())
+
+
+def _writejsons():
+    TABLES = {
+        "values": [
+            "minecraft:crafting_table",
+            "minecraft:cartography_table",
+            "minecraft:loom",
+            "minecraft:fletching_table",
+            "minecraft:smithing_table",
+            "minecraft:grindstone",
+            "#minecraft:anvil",
+            "minecraft:lodestone",
+            "minecraft:scaffolding"
+        ]
+    }
+    block_tag bpconfig:tables (TABLES)
+
+    import backpacks/access as backpacks
+    import backpacks/pather as pather
+
+    for recipeTuple in backpacks.getRecipes():
+        bp = recipeTuple[0]
+        recipe = recipeTuple[1]
+        recipeObj = {
+            "type": "minecraft:crafting_shaped",
+            "category": "equipment",
+            "pattern": recipe.pattern,
+            "key": recipe.key,
+            "result": {
+                "id": "minecraft:carrot_on_a_stick",
+                "count": 1,
+                "components": {
+                "minecraft:item_model": pather.makeItemModelPath(bp.Id()),
+                "minecraft:custom_model_data": {},
+                "minecraft:custom_data": {"bp":(bp.Nbt())},
+                "minecraft:item_name": f"{{\"translate\": \"{bp.Translation()}\",\"color\": \"gold\",\"italic\": false}}"
+                }
+            }
+        }
+        if (bp.model_layers):
+            recipeObj["result"]["components"]["minecraft:custom_model_data"]["colors"] = []
+            cmd_colors = recipeObj["result"]["components"]["minecraft:custom_model_data"]["colors"]
+            for layer in bp.ModelLayers():
+                substitued = False
+                for customLayer in recipe.result_layers:
+                    if (layer.modifs and (customLayer[0] == layer.modifs.label or layer.modifs.label is '*')):
+                        substitued = True
+                        cmd_colors.append(_packRgb(* customLayer[1]))
+                        break
+                if (not substitued):
+                    cmd_colors.append(_packRgb(* layer.default))
+        recipe (pather.makeJsonRecipePath(recipe.id)) (recipeObj)
+
+    for bp in backpacks.getAll():    
+        item_model (bp.ItemModelPath()) (__ItemModel(bp))
+
+        jsonModels = bp.WriteModels()
+        model (pather.makeJsonModelsPath(bp.Id(),'opened')) (jsonModels.opened)
+        model (pather.makeJsonModelsPath(bp.Id(),'closed')) (jsonModels.closed)
+        if (jsonModels.item):
+            model (pather.makeJsonModelsPath(bp.Id(),'item')) (jsonModels.item)
+
+        loot_table (bp.ItemModelPath()) (__LootTable(bp))
+
+def _layersToTints(modelLayers):
+    def itemLayerToTint(modelLayer):
+        return  {
+            "type": "minecraft:custom_model_data",
+            "index": modelLayer.cmd_index,
+            "default": modelLayer.default
+        }
+    if (modelLayers is None):
+        return []
+    return list(map(itemLayerToTint,modelLayers))
+
+## Item Model Writers
+def __ItemModel(bp):
+    from backpacks/pather import makeJsonModelsPath
+
+    if (bp.HasItemModel()):
+        return {
+            "model": {
+                "type": "minecraft:select",
+                "property": "minecraft:display_context",
+                "cases": [
+                    {
+                        "when": ["thirdperson_lefthand","firstperson_lefthand","head"],
+                        "model": {
+                            "type": "minecraft:select",
+                            "property": "minecraft:custom_model_data",
+                            "cases": [
+                                {
+                                    "when": "opened",
+                                    "model": {
+                                        "type": "minecraft:model",
+                                        "model": makeJsonModelsPath(bp.Id(),"opened"),
+                                        "tints": _layersToTints(bp.ModelLayers())
+                                    }
+                                }
+                            ],
+                            "fallback": {
+                                "type": "minecraft:model",
+                                "model": makeJsonModelsPath(bp.Id(),"closed"),
+                                    "tints": _layersToTints(bp.ModelLayers())
+                                }
+                            }
+                        }
+                    ],
+                    "fallback": {
+                        "type": "minecraft:model",
+                        "model": makeJsonModelsPath(bp.Id(),"item"),
+                        "tints": _layersToTints(bp.ItemLayers())
+                    }
+                }
+        }
+    
+    return {
+        "model": {
+        "type": "minecraft:select",
+        "property": "minecraft:custom_model_data",
+        "cases": [
+            {
+                "when": "opened",
+                "model": {
+                    "type": "minecraft:model",
+                    "model": makeJsonModelsPath(bp.Id(),"opened"),
+                    "tints": _layersToTints(bp.ModelLayers())
+                }
+            }
+        ],
+        "fallback": {
+            "type": "minecraft:model",
+            "model": makeJsonModelsPath(bp.Id(),"closed"),
+            "tints": _layersToTints(bp.ModelLayers())
+        }
+        }
+    }
+
+def __LootTable(bp):
+    def packRgbArr(rgb):
+        return _packRgb(rgb[0],rgb[1],rgb[2])
+
+    def extractColor(tint):
+        return tint["default"]
+
+    return {
+        "pools": [
+            {
+            "rolls": 1,
+            "entries": [
+                {
+                "type": "minecraft:item",
+                "name": "minecraft:carrot_on_a_stick",
+                "functions": [
+                    {
+                    "function": "minecraft:set_components",
+                    "components": {
+                        "minecraft:item_model": bp.ItemModelPath()
+                    }
+                    },
+                    {
+                    "function": "minecraft:set_custom_data",
+                    "tag": {"bp":bp.Nbt()}
+                    },
+                    {
+                    "function": "minecraft:set_custom_model_data",
+                    "colors": {
+                        "values": list(map(packRgbArr,map(extractColor,_layersToTints(bp.ModelLayers())))),
+                        "mode": "replace_all"
+                    }
+                    },
+                    {
+                    "function": "minecraft:set_count",
+                    "count": 1
+                    },
+                    {
+                    "function": "minecraft:set_name",
+                    "entity": "this",
+                    "target": "item_name",
+                    "name": {
+                        "translate": bp.Translation(),
+                        "color": "gold",
+                        "italic": false
+                    }
+                    }
+                ]
+                }
+            ]
+            }
+        ]
+        }

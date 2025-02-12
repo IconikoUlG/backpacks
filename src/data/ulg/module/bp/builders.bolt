@@ -1,0 +1,83 @@
+import uuid
+import string
+from random import randint
+
+def load(datapackId : str, version : int, setupFunc = None):
+    scoreboard objectives add ulg_gen dummy
+    scoreboard objectives add ulg_intick dummy
+    scoreboard objectives add ulg_intick1 dummy
+    scoreboard objectives add ulg_intick2 dummy
+    scoreboard objectives add ulg_macro dummy
+    if (setupFunc != None):
+        unless score ('$'+datapackId) ulg_gen matches (str(version)+"..") run function ~/setup:
+            setupFunc()
+    scoreboard players set ('$'+datapackId) ulg_gen (str(version))
+
+
+def recallableFunction(path_or_func, runnableFunc=None, macroPacket=None):
+    if not runnableFunc:
+        return recallableFunction(str(./recallable) + '/' + _random_uuid_16(), path_or_func)
+    if macroPacket:
+        return recallableMacroFunction(path_or_func, runnableFunc, macroPacket)
+
+    func_path = (path_or_func)
+
+    function (func_path):
+        runnableFunc()
+    def inner():
+        execute run function (func_path)
+    
+    return inner
+
+
+
+def recallableMacroFunction(path,runnableFunc,defaultPacket):
+    print("1Define macro > "+str(path)+" with packet = "+str(defaultPacket))
+    funcPath = (path)
+    function (funcPath):
+        runnableFunc()
+    print("2Define macro > "+str(path))
+    def inner(packet=None):
+        print("4Call macro > "+str(path))
+        finalPacket = (packet or defaultPacket)
+        print("5Call macro > "+str(path))
+        print("type of packet is "+str(type(finalPacket)))
+        _resolveMacroFunctionCommand(funcPath,finalPacket)
+    print("3Define macro > "+str(path))
+    return inner
+
+def _resolveMacroFunctionCommand(funcPath,packet):
+    if isinstance(packet, dict) or packet.startswith('{'):
+        execute run function (funcPath) (packet)
+    else:
+        splitted = packet.split('//')
+        if (len(splitted)==2):
+            execute run function (funcPath) with storage (splitted[0]) (splitted[1])
+
+def genTickTag():
+    tag = "ulg_intick" + str(randint(1, 1000))
+    return tag
+
+def handleCondition(conditionable,iftrue,iffalse):
+    ttag = genTickTag()
+    tag @s remove (ttag)
+    def addTag():
+        tag @s add (ttag)
+    conditionable(addTag)
+    as @s[tag=(ttag)]:
+        iftrue()
+    as @s[tag=!ttag]:
+        iffalse()
+    tag @s remove (ttag)
+
+def _random_uuid_16():
+    allowed = set(string.ascii_lowercase + string.digits)
+    result = []
+    
+    for c in uuid.uuid4().hex:
+        if c in allowed:
+            result.append(c)
+            if len(result) == 16:
+                break
+
+    return ''.join(result)

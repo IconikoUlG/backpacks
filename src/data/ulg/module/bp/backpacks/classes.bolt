@@ -1,0 +1,128 @@
+from types import SimpleNamespace
+from typing import Optional, List, Dict, Tuple
+from dataclasses import dataclass, field
+
+@dataclass
+class SimpleRecipe:
+    pattern: List[str]
+    key: Dict[str, str]
+    id: str = field(default_factory=str)
+    result_layers : List[Tuple[str, List[int]]] = field(default_factory=list)
+
+@dataclass
+class ModifsLayer:
+    label : str
+    accepts : List[str] = field(default_factory=list)
+
+@dataclass
+class ModelLayer:
+    modifs: ModifsLayer
+    cmd_index: int
+    default: List[int]
+
+@dataclass
+class ItemModelLayer:
+    cmd_index: int
+    default: List[int]
+
+@dataclass
+class JsonModels:
+    closed : dict
+    opened : dict
+    item : dict
+
+def _WriteAutoModels(obj) -> JsonModels:
+        from ./pather import makeJsonModelsPath
+        model_parent = obj.model_parent
+        item_model = None
+        if (obj.HasItemModel()):
+            item_model ={
+                "parent": "minecraft:item/generated",
+                "textures": {
+                    "layer0": "ulg_bp/item/"+obj.Id()
+                }
+            }
+        return JsonModels(
+            closed = {
+                "parent": makeJsonModelsPath(model_parent,"closed"),
+                "textures": {
+                    "backpack": "ulg_bp/"+obj.Id()
+                }
+            },
+            opened = {
+                "parent": makeJsonModelsPath(model_parent,"opened"),
+                "textures": {
+                    "backpack": "ulg_bp/"+obj.Id()
+                }
+            },
+            item = (item_model)
+        )
+        
+class Backpack():
+    def __init__(self, id: str, translation: str, writeModelsFunc=_WriteAutoModels, model_layers=None, item_layers=None, direct_transform=None, recipe=None, model_parent="explorer", nbt=None, hasItemModel=None):
+        self.id = id
+        self.translation = translation
+        self.writeModelsFunc = writeModelsFunc
+        self.model_layers = model_layers
+        self.item_layers = item_layers
+        self.direct_transform = direct_transform
+        self.recipe = recipe
+        self.nbt = nbt or {Inventory:[],Opened:false,newV:2}
+        self.hasItemModel = hasItemModel or bool(item_layers)
+        self.model_parent = model_parent
+
+    def Id(self) -> str:
+        return self.id
+    
+    def Translation(self) -> str:
+        return self.translation
+
+    def Recipe(self) -> Optional[SimpleRecipe]:
+        return self.recipe or None
+
+    def ModelLayers(self) -> Optional[List[ModelLayer]]:
+        return self.model_layers or None
+
+    def ItemLayers(self) -> Optional[List[ItemModelLayer]]:
+        return self.item_layers or None
+
+    def DirectTransform(self) -> Optional[Dict[str,dict]]:
+        return self.direct_transform or None
+    
+    def WriteModels(self) -> JsonModels:
+        return self.writeModelsFunc(self)
+
+    def Nbt(self) -> dict:
+        return self.nbt
+
+    def HasItemModel(self) -> bool:
+        return self.hasItemModel
+
+    def ItemModelPath(self) -> str:
+        from ./pather import makeItemModelPath
+        return makeItemModelPath(self.Id())
+
+def mc_colors_formatted(format : str):
+    result = {}
+    for color, rgb in mc_colors.items():
+       result[format.format(color=color)] = tuple(rgb)
+    return result
+
+mc_colors = {
+    'white': [255, 255, 255],
+    'light_gray': [160, 160, 160],
+    'gray': [90, 90, 90],
+    'black': [32, 32, 32],
+    'brown': [127, 63, 32],
+    'red': [201, 32, 32],
+    'orange': [255, 127, 0],
+    'yellow': [255, 255, 0],
+    'lime': [131, 201, 63],
+    'green': [107, 143, 51],
+    'cyan': [0, 201, 196],
+    'light_blue': [30, 153, 255],
+    'blue': [31, 63, 255],
+    'purple': [101, 31, 255],
+    'magenta': [190, 0, 190],
+    'pink': [255, 102, 195]
+}

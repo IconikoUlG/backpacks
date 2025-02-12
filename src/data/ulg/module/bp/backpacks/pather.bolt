@@ -1,0 +1,13 @@
+def _makePath(root,dest=None):
+    if ((dest) and not dest.startswith('/')):
+        dest = "/"+dest
+    return root+dest    
+
+def makeItemModelPath(bpId):
+    return "ulg:backpack/"+bpId
+
+def makeJsonModelsPath(bpId, then=""):
+    return _makePath("ulg:bp/"+bpId,then)
+
+def makeJsonRecipePath(bpId, then=""):
+    return _makePath("ulg:bp/"+bpId,then)
