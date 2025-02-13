@@ -6,8 +6,8 @@ execute store result score $force ulg_intick run data get storage ulg:macro tick
 execute if data storage ulg:macro table_modify{isVirgin:true} run scoreboard players set $force ulg_intick 100
 
 # Clamp Force Between 0 and 100
-execute if score $force ulg_intick > #100 ulg_gen run scoreboard players set $force ulg_intick 100
-execute if score $force ulg_intick < #0 ulg_gen run scoreboard players set $force ulg_intick 0
+execute if score $force ulg_intick matches 101.. run scoreboard players set $force ulg_intick 100
+execute if score $force ulg_intick matches ..-1 run scoreboard players set $force ulg_intick 0
 
 # Extract Red Component
 scoreboard players operation $red ulg_intick = $OGrgb ulg_intick

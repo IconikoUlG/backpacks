@@ -1,3 +1,5 @@
+#say interaction
+
 execute as @s[tag=ulg.mouldy_backpack] if data entity @a[tag=ulg.intick.target,limit=1] SelectedItem{id:"minecraft:mace"} run return run function ulg:bp/sub/benching/repair_mouldy_backpack
 
 execute if score $CAN_MODIFY_BACKPACKS ulg_gen matches 0 run return fail

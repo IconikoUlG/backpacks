@@ -25,6 +25,12 @@ def __Model(model_id, layers, direct_transform={}):
     return result
 
 def _packRgb(r, g, b):
+    if not (0 <= r <= 255):
+        raise ValueError(f"Red value {r} is out of range (0-255)")
+    if not (0 <= g <= 255):
+        raise ValueError(f"Green value {g} is out of range (0-255)")
+    if not (0 <= b <= 255):
+        raise ValueError(f"Blue value {b} is out of range (0-255)")
     return (r << 16) + (g << 8) + b
 
 def __IGroup(group_id, defaultForce=50, **values):
@@ -60,6 +66,7 @@ def __IGroup(group_id, defaultForce=50, **values):
 def __buildModifs():
     import backpacks/access as backpacks
     from backpacks/classes import mc_colors_formatted
+    from backpacks/pather import makeItemModelPath
     MODIFS = {
         "backpackModels": [
             # __Model(
@@ -99,7 +106,7 @@ def __buildModifs():
         if (layers):
             MODIFS["backpackModels"].append(
                 __Model(
-                    bp.Id(),
+                    makeItemModelPath(bp.Id()),
                     list(map(layerToModifs,layers)),
                     bp.DirectTransform()
                 )
