@@ -1,6 +1,5 @@
 #say step1
-
-$say step1 = $(itemGroupId)
+# $say step1 = $(itemGroupId)
 
 $execute unless data storage ulg:backpack table_modifs.backpackModels[{id:"$(currentModel)"}].layers[{accepts:["$(itemGroupId)"]}] run return fail
 

@@ -3,7 +3,19 @@ from @builders import genTickTag, recallableFunction
 from @jsons import IM_set_open, IM_set_close, IM_set_inventory, _P_shulker_boxes_check, _P_bundles_check, _P_backpacks_check, P_boxes_check
 
 def _inventorySwitch():
-    function ulg:bp/sub/inventory_switch/execute_as_player
+    in minecraft:overworld positioned 829999 -64 829999:
+        setblock ~ ~ ~ minecraft:barrel replace
+        data modify block ~ ~ ~ Items set value []
+        setblock ~-1 ~ ~ minecraft:barrel replace
+        data modify block ~-1 ~ ~ Items set value []
+        data modify block ~ ~ ~ Items set from entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".bp.Inventory
+        execute positioned ~-1 ~ ~:
+            for n in range(27):
+                item replace block ~ ~ ~ f"container.{n}" from entity @s f"container.{n+9}"
+        data modify storage ulg:backpack intick.BackPackInventory set from block ~-1 ~ ~ Items
+        execute :
+            for n in range(27):
+                item replace entity @s f"container.{n+9}" from block ~ ~ ~ f"container.{n}"
 switch_inventory = recallableFunction(_inventorySwitch)
 
 def _fClose():
@@ -12,7 +24,7 @@ def _fClose():
     data modify storage ulg:backpack intick.isLegacyBackpack set from entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".ulg.isLegacyBackpack
     data modify storage ulg:backpack intick.BackPackName set from entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".display.Name
 
-    function ulg:bp/sub/inventory_switch_on_bp_use
+    switch_inventory()
     item modify entity @s weapon.offhand IM_set_close()
     item modify entity @s weapon.offhand IM_set_inventory()
 
@@ -36,7 +48,7 @@ def _fOpen():
     data remove storage ulg:backpack intick
     data modify storage ulg:backpack intick.BackPackName set from entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".display.Name
 
-    function ulg:bp/sub/inventory_switch_on_bp_use
+    switch_inventory()
     item modify entity @s weapon.offhand IM_set_open()
     item modify entity @s weapon.offhand IM_set_inventory()
 

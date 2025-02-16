@@ -1,1 +1,0 @@
-execute in minecraft:overworld positioned 829999 -64 829999 run function ulg:bp/sub/inventory_switch/sub

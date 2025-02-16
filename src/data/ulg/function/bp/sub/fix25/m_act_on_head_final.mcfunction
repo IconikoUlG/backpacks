@@ -1,3 +1,5 @@
+from @jsons import IM_set_inventory
+
 $item modify entity @s armor.head {\
     "function": "minecraft:set_components", \
     "components": { \
@@ -13,4 +15,4 @@ $item modify entity @s armor.head {\
     } \
 }
 
-item modify entity @s armor.head ulg:set_backpack_inventory
+item modify entity @s armor.head IM_set_inventory()

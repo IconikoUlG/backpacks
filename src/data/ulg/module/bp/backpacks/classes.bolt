@@ -126,3 +126,6 @@ mc_colors = {
     'magenta': [190, 0, 190],
     'pink': [255, 102, 195]
 }
+
+explorer_base_color = [148, 80, 34]
+camping_base_color = [176, 103, 24]

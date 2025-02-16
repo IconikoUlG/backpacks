@@ -18,7 +18,6 @@ pipeline:
   - bolt_import
   - mecha
   - beet.contrib.copy_files
-  - ulgpost
 output: .out
 meta:
   bolt_import:

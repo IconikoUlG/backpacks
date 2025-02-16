@@ -1,7 +1,8 @@
-from ./backpacks import getAll, getRecipes
+from ./backpacks import getAll, getRecipes, getConversions
 
 def getBackpack(id : str):
     for bp in getAll():
        if bp.Id() == id:
             return bp
 
+fix25_conversions = getConversions()

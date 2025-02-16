@@ -1,3 +1,5 @@
+from backpacks/access import fix25_conversions
+
 def __Model(model_id, layers, direct_transform={}):
     """
     Build a model compound dictionary.
@@ -84,7 +86,7 @@ def __buildModifs():
         "itemGroups": [
             __IGroup(
                 "dyes",
-                defaultForce=60,
+                defaultForce=50,
                 **mc_colors_formatted("minecraft:{color}_dye")
             ),
             __IGroup("ores", defaultForce=100,

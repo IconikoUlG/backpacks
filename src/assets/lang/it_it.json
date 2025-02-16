@@ -1,5 +1,7 @@
 {
-	"ulg.item.backpack": "Zaino d'Esplorazione",
+	"ulg.item.backpack": "Zaino",
+    "ulg.item.backpack.explorer": "Zaino d'Esplorazione",
+    "ulg.item.backpack.caming": "Zaino da Campeggio",
     "ulg.item.backpack.yellow": "Zaino d'Esplorazione Giallo",
     "ulg.item.backpack.blue": "Zaino d'Esplorazione Blu",
     "ulg.item.backpack.black": "Zaino d'Esplorazione Nero",

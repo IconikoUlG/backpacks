@@ -1,4 +1,4 @@
-from ./classes import Backpack, SimpleRecipe, ModelLayer, ModifsLayer, ItemModelLayer, JsonModels, mc_colors_formatted
+from ./classes import Backpack, SimpleRecipe, ModelLayer, ModifsLayer, ItemModelLayer, JsonModels, mc_colors_formatted, explorer_base_color, camping_base_color
 
 import ./modelwriters as modelWriters
 
@@ -21,27 +21,27 @@ explorer = Backpack(
         ModelLayer(
             modifs=ModifsLayer(label="Body", accepts=["dyes"]),
             cmd_index=0,
-            default=[176, 103, 24]
+            default=explorer_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Top", accepts=["dyes"]),
             cmd_index=1,
-            default=[176, 103, 24]
+            default=explorer_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Big Pocket", accepts=["dyes"]),
             cmd_index=2,
-            default=[176, 103, 24]
+            default=explorer_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Right Pocket", accepts=["dyes"]),
             cmd_index=3,
-            default=[176, 103, 24]
+            default=explorer_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Left Pocket", accepts=["dyes"]),
             cmd_index=4,
-            default=[176, 103, 24]
+            default=explorer_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Details", accepts=["ores"]),
@@ -50,9 +50,9 @@ explorer = Backpack(
         )
     ],
     item_layers = [
-        ItemModelLayer(cmd_index=0, default=[176, 103, 24]),
-        ItemModelLayer(cmd_index=1, default=[176, 103, 24]),
-        ItemModelLayer(cmd_index=2, default=[176, 103, 24]),
+        ItemModelLayer(cmd_index=0, default=explorer_base_color),
+        ItemModelLayer(cmd_index=1, default=explorer_base_color),
+        ItemModelLayer(cmd_index=2, default=explorer_base_color),
         ItemModelLayer(cmd_index=5, default=[255, 215, 0])
     ],
     direct_transform = {
@@ -69,22 +69,22 @@ camping = Backpack(
         ModelLayer(
             modifs=ModifsLayer(label="Body", accepts=["dyes"]),
             cmd_index=0,
-            default=[176, 103, 24]
+            default=camping_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Stripes", accepts=["dyes"]),
             cmd_index=1,
-            default=[176, 103, 24]
+            default=camping_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Big Pocket", accepts=["dyes"]),
             cmd_index=2,
-            default=[176, 103, 24]
+            default=camping_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Side Pockets", accepts=["dyes"]),
             cmd_index=3,
-            default=[176, 103, 24]
+            default=camping_base_color
         ),
         ModelLayer(
             modifs=ModifsLayer(label="Tent", accepts=["carpets"]),
@@ -98,8 +98,8 @@ camping = Backpack(
         )
     ],
     item_layers = [
-        ItemModelLayer(cmd_index=0, default=[176, 103, 24]),
-        ItemModelLayer(cmd_index=2, default=[176, 103, 24]),
+        ItemModelLayer(cmd_index=0, default=explorer_base_color),
+        ItemModelLayer(cmd_index=2, default=explorer_base_color),
         ItemModelLayer(cmd_index=4, default=[107, 143, 51]),
         ItemModelLayer(cmd_index=5, default=[255, 215, 0])
     ]
@@ -169,3 +169,31 @@ def getRecipes():
             backpack.recipe.id = backpack.id
             recipes.append((backpack,backpack.recipe))
     return recipes
+
+def getConversions():
+    return [
+        {"desc": "normal", "old_cmd": 822300, "model": "ulg:backpack/explorer", "colors": [11560728, 11560728, 11560728, 11560728, 11560728, 16766720]},
+        {"desc": "blue", "old_cmd": 822302, "model": "ulg:backpack/explorer", "colors": [2450886, 2450886, 2450886, 2450886, 2450886, 16766720]},
+        {"desc": "yellow", "old_cmd": 822304, "model": "ulg:backpack/explorer", "colors": [16766720, 16766720, 16766720, 16766720, 16766720, 16766720]},
+        {"desc": "white", "old_cmd": 822306, "model": "ulg:backpack/explorer", "colors": [16777215, 16777215, 16777215, 16777215, 16777215, 16766720]},
+        {"desc": "orange", "old_cmd": 822308, "model": "ulg:backpack/explorer", "colors": [16742400, 16742400, 16742400, 16742400, 16742400, 16766720]},
+        {"desc": "black", "old_cmd": 822310, "model": "ulg:backpack/explorer", "colors": [2105376, 2105376, 2105376, 2105376, 2105376, 16766720]},
+        {"desc": "magenta", "old_cmd": 822312, "model": "ulg:backpack/explorer", "colors": [12452030, 12452030, 12452030, 12452030, 12452030, 16766720]},
+        {"desc": "lightblue", "old_cmd": 822314, "model": "ulg:backpack/explorer", "colors": [2005503, 2005503, 2005503, 2005503, 2005503, 16766720]},
+        {"desc": "lime", "old_cmd": 822316, "model": "ulg:backpack/explorer", "colors": [8578575, 8578575, 8578575, 8578575, 8578575, 16766720]},
+        {"desc": "pink", "old_cmd": 822318, "model": "ulg:backpack/explorer", "colors": [16737987, 16737987, 16737987, 16737987, 16737987, 16766720]},
+        {"desc": "gray", "old_cmd": 822320, "model": "ulg:backpack/explorer", "colors": [5924986, 5924986, 5924986, 5924986, 5924986, 16766720]},
+        {"desc": "lightgray", "old_cmd": 822322, "model": "ulg:backpack/explorer", "colors": [10526880, 10526880, 10526880, 10526880, 10526880, 16766720]},
+        {"desc": "cyan", "old_cmd": 822324, "model": "ulg:backpack/explorer", "colors": [51404, 51404, 51404, 51404, 51404, 16766720]},
+        {"desc": "purple", "old_cmd": 822326, "model": "ulg:backpack/explorer", "colors": [6684876, 6684876, 6684876, 6684876, 6684876, 16766720]},
+        {"desc": "brown", "old_cmd": 822328, "model": "ulg:backpack/explorer", "colors": [8344087, 8344087, 8344087, 8344087, 8344087, 16766720]},
+        {"desc": "green", "old_cmd": 822330, "model": "ulg:backpack/explorer", "colors": [7054613, 7054613, 7054613, 7054613, 7054613, 16766720]},
+        {"desc": "red", "old_cmd": 822332, "model": "ulg:backpack/explorer", "colors": [13177105, 13177105, 13177105, 13177105, 13177105, 16766720]},
+        {"desc": "rainbow", "old_cmd": 822334, "model": "ulg:backpack/rainbow", "colors": []},
+        {"desc": "", "old_cmd": 822336, "model": "ulg:backpack/explorer", "colors": [10824234, 10824234, 10824234, 10824234, 10824234, 16766720]},
+        {"desc": "", "old_cmd": 822338, "model": "ulg:backpack/explorer", "colors": [10824234, 10824234, 10824234, 10824234, 10824234, 16766720]},
+        {"desc": "", "old_cmd": 822340, "model": "ulg:backpack/explorer", "colors": [10824234, 10824234, 10824234, 10824234, 10824234, 16766720]},
+        {"desc": "", "old_cmd": 822342, "model": "ulg:backpack/explorer", "colors": [10824234, 10824234, 10824234, 10824234, 10824234, 16766720]},
+        {"desc": "mouldy", "old_cmd": 822344, "model": "ulg:backpack/mouldy", "colors": []},
+        {"desc": "vintage", "old_cmd": 822346, "model": "ulg:backpack/vintage", "colors": []},
+    ]

@@ -1,5 +1,7 @@
 {
-	"ulg.item.backpack": "探险背包",
+    "ulg.item.backpack": "背包",
+	"ulg.item.backpack.explorer": "探险背包",
+    "ulg.item.backpack.camping": "露营背包",
     "ulg.item.backpack.yellow": "黄色探险背包",
     "ulg.item.backpack.blue": "蓝色探险背包",
     "ulg.item.backpack.black": "黑色探险背包",
