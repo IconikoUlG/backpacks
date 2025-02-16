@@ -5,13 +5,17 @@ description: "Working Backpacks"
 require:
   - bolt
 data_pack:
+  name: Backpacks1_21_4-DP
   load:
-    - src/
+    - data: src/data
+    - pack.png : src/dp.pack.png
   pack_format: 61
   zipped: false
 resource_pack:
+  name: Backpacks1_21_4-Resources
   load:
-    - src/
+    - assets: src/assets
+    - pack.png : src/rp.pack.png
   pack_format: 46
   zipped: false
 pipeline:
