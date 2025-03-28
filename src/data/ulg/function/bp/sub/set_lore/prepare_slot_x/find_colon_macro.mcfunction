@@ -5,7 +5,7 @@
 
 $data modify storage ulg:macro find_colon.t set string storage ulg:macro find_colon.text $(idx) $(next)
 
-execute if data storage ulg:macro find_colon{t:":"} run return run data modify storage ulg:macro find_colon.result set from storage ulg:macro find_colon.packet
+if data storage ulg:macro find_colon{t:":"} run return run data modify storage ulg:macro find_colon.result set from storage ulg:macro find_colon.packet
 
 data modify storage ulg:macro find_colon.packet.idx set from storage ulg:macro find_colon.packet.next
 scoreboard players add #find_colon_next ulg_intick 1

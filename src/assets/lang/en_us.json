@@ -32,5 +32,7 @@
     "ulg.alert.still_open": "You can't place the backpack there, it's still open!",
     "ulg.alert.oldversionbackpack": "This backpack is mouldy. How to open it? HERE is a hint.",
     "ulg.lore.oldversionbackpack": "This backpack is old. To be opened, it will need to be refurbished on a working table.",
-    "ulg.lore.slots": "Slots: "
+    "ulg.lore.slots": "Slots: ",
+    "ulg.lore.item_row": "%s x%s",
+    "ulg.lore.more": "+%s"
 }

@@ -35,6 +35,9 @@ class ImportConverter:
             return ('./' if n == 0 else '../' * n) + module
         if module.startswith('.') or self.module_exists(module):
             return module
+        path_segments = re.split(r'[/]', module)
+        if (':' in path_segments[0]):
+            return module
         return './' + module
 
     def module_exists(self, module_name: str) -> bool:

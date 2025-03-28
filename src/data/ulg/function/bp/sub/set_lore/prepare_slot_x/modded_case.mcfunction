@@ -10,6 +10,6 @@ execute unless data storage ulg:macro find_colon.result run return run function 
 function ulg:bp/sub/set_lore/prepare_slot_x/modded_case_sub with storage ulg:macro find_colon.result
 
 function ulg:bp/sub/set_lore/prepare_slot_x/test_block with storage ulg:macro prepare_slot_x.packet
-execute if score #test_block ulg_intick matches 1 run data modify storage ulg:macro prepare_slot_x.packet.type set value "block"
+if score #test_block ulg_intick matches 1 run data modify storage ulg:macro prepare_slot_x.packet.type set value "block"
 
 function ulg:bp/sub/set_lore/prepare_slot_x/set with storage ulg:macro prepare_slot_x.packet

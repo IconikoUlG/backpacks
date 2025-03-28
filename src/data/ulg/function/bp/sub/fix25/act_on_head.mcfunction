@@ -1,4 +1,4 @@
-# say fafga
+# #say fafga
 
 data modify storage ulg:macro tick.oldCMD set from entity @s ArmorItems[3].components."minecraft:custom_data".ulg.BackPack.CustomModelData
 

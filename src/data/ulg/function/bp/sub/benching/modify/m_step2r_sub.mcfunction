@@ -3,11 +3,11 @@ $execute store result score $OGrgb ulg_intick run data get entity @s ArmorItems[
 
 # Retrieve Force
 execute store result score $force ulg_intick run data get storage ulg:macro tick.modify.colorEntry.force
-execute if data storage ulg:macro table_modify{isVirgin:true} run scoreboard players set $force ulg_intick 100
+if data storage ulg:macro table_modify{isVirgin:true} run scoreboard players set $force ulg_intick 100
 
 # Clamp Force Between 0 and 100
-execute if score $force ulg_intick matches 101.. run scoreboard players set $force ulg_intick 100
-execute if score $force ulg_intick matches ..-1 run scoreboard players set $force ulg_intick 0
+if score $force ulg_intick matches 101.. run scoreboard players set $force ulg_intick 100
+if score $force ulg_intick matches ..-1 run scoreboard players set $force ulg_intick 0
 
 # Extract Red Component
 scoreboard players operation $red ulg_intick = $OGrgb ulg_intick
@@ -29,7 +29,7 @@ $scoreboard players set $dGreen ulg_intick $(gValue)
 $scoreboard players set $dBlue ulg_intick $(bValue)
 
 # Debug Original and Target Values
-#$say Target RGB: R=$(rValue), G=$(gValue), B=$(bValue)
+##$say Target RGB: R=$(rValue), G=$(gValue), B=$(bValue)
 
 # Red Channel Lerp
 scoreboard players operation $temp ulg_intick = $dRed ulg_intick

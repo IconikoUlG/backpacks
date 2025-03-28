@@ -80,4 +80,4 @@ def _random_uuid_16():
             if len(result) == 16:
                 break
 
-    return ''.join(result)
+    return 'u'+''.join(result)

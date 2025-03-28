@@ -1,0 +1,35 @@
+author: UltroGhast
+data_pack:
+  load:
+  - data: src/data
+  - pack.png: src/dp.pack.png
+  name: Backpacks1_21_5-DP
+  pack_format: 71
+  zipped: false
+description: Working Backpacks
+id: bp
+meta:
+  bolt:
+    entrypoint: '*'
+  bolt_import:
+    root: ulg:bp
+  copy_files:
+    resource_pack:
+      assets/minecraft/atlases/blocks.json: src/assets/textures/atlas.json
+      assets/minecraft/textures/ulg_bp: src/assets/textures
+      assets/ulg_bp/lang: src/assets/lang
+name: Backpacks x 1.21.5
+output: .out
+pipeline:
+- bolt_import
+- mecha
+- beet.contrib.copy_files
+require:
+- bolt
+resource_pack:
+  load:
+  - assets: src/assets
+  - pack.png: src/rp.pack.png
+  name: Backpacks1_21_5-Resources
+  pack_format: 55
+  zipped: false

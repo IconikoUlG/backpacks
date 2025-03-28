@@ -1,4 +1,4 @@
-#say step_2
+##say step_2
 
 data modify storage ulg:macro table_modify_s2 set value {idx:0}
 data modify storage ulg:macro table_modify_s2.rgb set from storage ulg:macro tick.modify.colorEntry.rgb

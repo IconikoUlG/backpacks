@@ -1,4 +1,4 @@
-#say step 0
+##say step 0
 
 execute unless score @s ulg_gen matches -1..10 run scoreboard players set @s ulg_gen -1
 
@@ -8,12 +8,12 @@ execute unless score @s ulg_gen matches -1..10 run scoreboard players set @s ulg
 #ulg:macro table_modify.itemCount has from entity @a[tag=ulg.intick.target,limit=1] SelectedItem.count
 # cut?: ulg:macro table_modify.itemComponents has from entity @a[tag=ulg.intick.target,limit=1] SelectedItem.components
 
-$execute if data storage ulg:backpack table_modifs.backpackModels[{id:"$(currentModel)"}].directTransform."$(itemId)" run return run function ulg:bp/sub/benching/modify/m_step0_alt with storage ulg:macro table_modify
+$if data storage ulg:backpack table_modifs.backpackModels[{id:"$(currentModel)"}].directTransform."$(itemId)" run return run function ulg:bp/sub/benching/modify/m_step0_alt with storage ulg:macro table_modify
 
 $execute unless data storage ulg:backpack table_modifs.backpackModels[{id:"$(currentModel)"}].layers run return fail
 
 data modify storage ulg:macro table_modify.itemGroupId set value "null"
 $data modify storage ulg:macro table_modify.itemGroupId set from storage ulg:backpack table_modifs.itemGroups[{values:[{item:"$(itemId)"}]}].id
-execute if data storage ulg:macro table_modify{itemGroupId:"null"} run return fail
+if data storage ulg:macro table_modify{itemGroupId:"null"} run return fail
 
 return run function ulg:bp/sub/benching/modify/m_step1 with storage ulg:macro table_modify

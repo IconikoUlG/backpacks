@@ -3,24 +3,24 @@ from @builders import handleCondition
 function_tag minecraft:tick {"values": [(~/)]}
 
 def coasClick():
-    if data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".bp.newV:
+    if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
         function ulg:bp/sub/use_backpack
-    if data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".ulg.BackPack:
-        unless data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".ulg.BackPack.newV:
+    if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
+        unless data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack.newV:
             tellraw @s {"translate":"ulg.alert.oldversionbackpack","color":"#ed7666","clickEvent": {"action":"open_url","value":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks/open_mouldy_backpack","underlined":true}}
 
 def playerTick():
     from @jsons import IM_make_mouldy, IM_append_slots_lore
 
-    if data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".ulg.BackPack:
-        unless data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".ulg.BackPack.newV:
+    if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
+        unless data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack.newV:
             item modify entity @s weapon.offhand IM_make_mouldy()
 
     if data entity @s Inventory[].components."minecraft:custom_data".bp{Opened:1b}:
-        unless data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".bp{Opened:1b}:
+        unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:1b}:
             function ulg:bp/sub/convert_openedbackpacks/player_inventory_case
-    if data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".bp.newV:
-        unless data entity @s Inventory[{Slot:-106b}].components."minecraft:custom_data".bp{isLoreInit:true}:
+    if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
+        unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{isLoreInit:true}:
             item modify entity @s weapon.offhand IM_append_slots_lore()
             function ulg:bp/sub/set_lore/macro {Slot:-106,containerString:"weapon.offhand"}
 

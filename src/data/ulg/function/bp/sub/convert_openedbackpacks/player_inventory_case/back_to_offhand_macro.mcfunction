@@ -1,3 +1,5 @@
+##$say back_to_offhand with Slot=$(Slot)
+
 execute in minecraft:overworld positioned 829999 -64 829999 run setblock ~ ~ ~ minecraft:barrel replace
 execute in minecraft:overworld positioned 829999 -64 829999 run data modify block ~ ~ ~ Items set value [{Slot:0b,id:"minecraft:carrot",count:1,components:{}}]
 execute in minecraft:overworld positioned 829999 -64 829999 run setblock ~-1 ~ ~ minecraft:barrel replace

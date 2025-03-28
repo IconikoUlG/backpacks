@@ -15,7 +15,7 @@ advancement (~/) {
   }
 }
 
-#say interact with tabled
+##say interact with tabled
 
 execute as @s run tag @s add ulg.intick.target
 

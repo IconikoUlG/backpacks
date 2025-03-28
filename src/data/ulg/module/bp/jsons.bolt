@@ -119,7 +119,7 @@ def __associate(obj, length=12):
             encoded.append(chars[num % base])
             num //= base
 
-        return ''.join(encoded)
+        return ('id'+''.join(encoded))[:10]
 
     return (
         (./j)+'/'+str(encode_hash(hash_object(obj), length).lower()),
