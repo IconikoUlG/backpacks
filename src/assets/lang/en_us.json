@@ -1,5 +1,7 @@
 {
     "ulg.item.backpack": "Backpack",
+    "ulg.item.backpack.chest": "Chest Backpack",
+    "ulg.item.backpack.chest_christmas": "Christmas Backpack",
 	"ulg.item.backpack.explorer": "Exploration Backpack",
     "ulg.item.backpack.camping": "Camping Backpack",
     "ulg.item.backpack.yellow": "Yellow Exploration Backpack",

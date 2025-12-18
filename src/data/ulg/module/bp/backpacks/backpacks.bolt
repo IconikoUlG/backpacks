@@ -1,4 +1,4 @@
-from ./classes import Backpack, SimpleRecipe, ModelLayer, ModifsLayer, ItemModelLayer, JsonModels, mc_colors_formatted, explorer_base_color, camping_base_color
+from ./classes import Backpack, SimpleRecipe, ModelLayer, ModifsLayer, ItemModelLayer, JsonModels, mc_colors_formatted, explorer_base_color, camping_base_color, chest_base_color
 
 import ./modelwriters as modelWriters
 
@@ -105,6 +105,87 @@ camping = Backpack(
     ]
 )
 
+chest_normal = Backpack(
+    id="chest_normal",
+    translation="ulg.item.backpack.chest",
+    writeModelsFunc = modelWriters.chestBackpack,
+    recipe = SimpleRecipe(
+        pattern = [
+            "###",
+            "#S#",
+            " # "
+        ],
+        key = {
+            "#": "minecraft:leather",
+            "S": "minecraft:chest"
+        }
+    ),
+    model_layers = [
+        ModelLayer(
+            modifs=ModifsLayer(label="Body", accepts=["woods"]),
+            cmd_index=0,
+            default=chest_base_color
+        ),
+        ModelLayer(
+            modifs=ModifsLayer(label="Details", accepts=["ores"]),
+            cmd_index=1,
+            default=[240, 249, 255]
+        )
+    ],
+    item_layers = [
+        ItemModelLayer(cmd_index=0, default=chest_base_color),
+        ItemModelLayer(cmd_index=1, default=[255, 215, 0])
+    ],
+    direct_transform = {
+        "minecraft:copper_block": { model:"ulg:backpack/chest_copper", clearLayers:true },
+        "minecraft:leather": { model:"ulg:backpack/chest_christmas1", clearLayers:true },
+        "minecraft:rabbit_hide": { model:"ulg:backpack/chest_christmas2", clearLayers:true }
+    }
+)
+
+chest_copper = Backpack(
+    id="chest_copper",
+    translation="ulg.item.backpack.chest",
+    model_parent="chest_normal",
+    recipe = SimpleRecipe(
+        pattern = [
+            "###",
+            "#S#",
+            " # "
+        ],
+        key = {
+            "#": "minecraft:leather",
+            "S": "#ulg:any_copper_chest"
+        }
+    ), 
+    hasItemModel = True
+)
+
+chest_christmas1 = Backpack(
+    id="chest_christmas1",
+    translation="ulg.item.backpack.chest_christmas",
+    model_parent="chest_normal", 
+    hasItemModel = True,
+    recipe = SimpleRecipe(
+        pattern = [
+            "###",
+            "#S#",
+            " # "
+        ],
+        key = {
+            "#": "minecraft:leather",
+            "S": "minecraft:spruce_sapling"
+        }
+    )
+)
+
+chest_christmas2 = Backpack(
+    id="chest_christmas2",
+    translation="ulg.item.backpack.chest_christmas",
+    model_parent="chest_normal", 
+    hasItemModel = True
+)
+
 rainbow = Backpack(
     id="rainbow",
     translation="ulg.item.backpack.rainbow",
@@ -136,7 +217,7 @@ mouldy = Backpack(
 )
 
 def getAll():
-    return [explorer, rainbow, camping, vintage, mouldy]
+    return [explorer, rainbow, camping, vintage, mouldy, chest_normal, chest_copper, chest_christmas1, chest_christmas2]
 
 def getRecipes():
     recipes = [(explorer,

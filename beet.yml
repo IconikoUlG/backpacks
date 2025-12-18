@@ -3,8 +3,9 @@ data_pack:
   load:
   - data: src/data
   - pack.png: src/dp.pack.png
-  name: Backpacks1_21_5-DP
-  pack_format: 71
+  - pack.mcmeta: src/dp.pack.mcmeta
+  name: Backpacks1_21_11-DP
+  pack_format: 88
   zipped: false
 description: Working Backpacks
 id: bp
@@ -18,7 +19,7 @@ meta:
       assets/minecraft/atlases/blocks.json: src/assets/textures/atlas.json
       assets/minecraft/textures/ulg_bp: src/assets/textures
       assets/ulg_bp/lang: src/assets/lang
-name: Backpacks x 1.21.5
+name: Backpacks x 1.21.5-1.21.10
 output: .out
 pipeline:
 - bolt_import
@@ -30,6 +31,7 @@ resource_pack:
   load:
   - assets: src/assets
   - pack.png: src/rp.pack.png
-  name: Backpacks1_21_5-Resources
-  pack_format: 55
+  - pack.mcmeta: src/rp.pack.mcmeta
+  name: Backpacks1_21_11-Resources
+  pack_format: 69
   zipped: false

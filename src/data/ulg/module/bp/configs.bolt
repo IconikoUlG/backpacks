@@ -94,6 +94,12 @@ def __buildModifs():
                 minecraft_iron_nugget=(240, 249, 255, 60), minecraft_gold_nugget=(255, 215, 0, 60),
                 minecraft_amethyst_shard=(204, 51, 255, 80), minecraft_prismarine_crystals=(38, 230, 255, 80)
             ),
+            __IGroup("woods", defaultForce=100,
+                minecraft_oak_planks = (167, 110, 31), minecraft_spruce_planks = (115, 70, 28), minecraft_birch_planks = (222, 199, 129),
+                minecraft_jungle_planks = (173, 124, 75), minecraft_acacia_planks = (209, 91, 27), minecraft_dark_oak_planks = (87, 46, 16),
+                minecraft_mangrove_planks = (110, 32, 22), minecraft_cherry_planks = (222, 133, 163), minecraft_crimson_planks = (140, 15, 96),
+                minecraft_warped_planks = (0, 161, 161), minecraft_pale_oak_planks = (232, 222, 209),
+            ),
             __IGroup("carpets", defaultForce=95,
                 **mc_colors_formatted("minecraft:{color}_carpet")
             )
@@ -181,7 +187,7 @@ def _writejsons():
                 "minecraft:item_model": pather.makeItemModelPath(bp.Id()),
                 "minecraft:custom_model_data": {},
                 "minecraft:custom_data": {"bp":(bp.Nbt())},
-                "minecraft:item_name": f"{{\"translate\": \"{bp.Translation()}\",\"color\": \"gold\",\"italic\": false}}"
+                "minecraft:item_name": {"translate": f"{bp.Translation()}","color": "gold","italic": false}
                 }
             }
         }

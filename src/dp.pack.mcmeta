@@ -1,0 +1,9 @@
+{
+  "pack": {
+    "min_format": 71,
+    "max_format": [94, 1],
+    "description": "Working Backpacks 1.21.5+\n - by §1Ultro§9Ghast",
+    "pack_format": 71,
+    "supported_formats": [71,94]
+  }
+}

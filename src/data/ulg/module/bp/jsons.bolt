@@ -125,3 +125,17 @@ def __associate(obj, length=12):
         (./j)+'/'+str(encode_hash(hash_object(obj), length).lower()),
         obj
         )
+
+item_tag ulg:any_copper_chest {
+  "replace": false,
+  "values": [
+    { "id": "minecraft:copper_chest", "required": false },
+    { "id": "minecraft:exposed_copper_chest", "required": false },
+    { "id": "minecraft:weathered_copper_chest", "required": false },
+    { "id": "minecraft:oxidized_copper_chest", "required": false },
+    { "id": "minecraft:waxed_copper_chest", "required": false },
+    { "id": "minecraft:waxed_exposed_copper_chest", "required": false },
+    { "id": "minecraft:waxed_weathered_copper_chest", "required": false },
+    { "id": "minecraft:waxed_oxidized_copper_chest", "required": false }
+  ]
+}

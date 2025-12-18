@@ -129,3 +129,4 @@ mc_colors = {
 
 explorer_base_color = [148, 80, 34]
 camping_base_color = [176, 103, 24]
+chest_base_color = [167, 110, 31]

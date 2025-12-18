@@ -1,3 +1,5 @@
+#say tryoninteraction
+
 data modify storage ulg:backpack intick.check set from entity @s interaction.player
 scoreboard players set @s ulg_intick 10
 execute store result score @s ulg_intick run data modify storage ulg:backpack intick.check set from entity @a[tag=ulg.intick.target,limit=1] UUID

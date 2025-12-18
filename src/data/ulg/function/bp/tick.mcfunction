@@ -42,7 +42,10 @@ def entityTick():
     }
     bTables = ('#'+bTables)
 
-    if score $CAN_PLACE_BACKPACKS ulg_gen matches 1 as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:0b}}}}}] at @s if block ~ ~-0.3 ~ (bTables) align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
+    if score $CAN_PLACE_BACKPACKS ulg_gen matches 1 as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:0b}}}}}] at @s if block ~ ~-0.2 ~ (bTables):
+        #handle anvil case
+        if block ~ ~-0.2 ~ minecraft:anvil if block ~ ~ ~ minecraft:anvil return run execute align xyz positioned ~0.5 ~1 ~0.5 run function ulg:bp/sub/benching/tryplace
+        align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
     as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{ulg:{BackPack:{}}}}}}] at @s if block ~ ~-0.3 ~ (bTables) align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
 
     as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:1b}}}}}] at @s run function ulg:bp/sub/convert_openedbackpacks/item_tag_entity_case

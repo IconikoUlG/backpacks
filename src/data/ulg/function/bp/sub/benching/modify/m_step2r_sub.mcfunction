@@ -1,5 +1,5 @@
 # Retrieve Original RGB Value
-$execute store result score $OGrgb ulg_intick run data get entity @s ArmorItems[3].components."minecraft:custom_model_data".colors[$(idx)]
+$execute store result score $OGrgb ulg_intick run data get entity @s equipment.head.components."minecraft:custom_model_data".colors[$(idx)]
 
 # Retrieve Force
 execute store result score $force ulg_intick run data get storage ulg:macro tick.modify.colorEntry.force
@@ -71,4 +71,4 @@ scoreboard players operation $packedResult ulg_intick %= #2147483647 ulg_gen
 execute store result storage ulg:macro table_modify.lastRgbResult int 1 run scoreboard players get $packedResult ulg_intick
 
 # Apply Packed RGB to Item
-$execute store result entity @s ArmorItems[3].components."minecraft:custom_model_data".colors[$(idx)] int 1 run scoreboard players get $packedResult ulg_intick
+$execute store result entity @s equipment.head.components."minecraft:custom_model_data".colors[$(idx)] int 1 run scoreboard players get $packedResult ulg_intick
