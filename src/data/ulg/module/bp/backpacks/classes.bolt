@@ -68,7 +68,7 @@ class Backpack():
         self.item_layers = item_layers
         self.direct_transform = direct_transform
         self.recipe = recipe
-        self.nbt = nbt or {Inventory:[],Opened:false,newV:2}
+        self.nbt = nbt or {Inventory:[],Opened:false,newV:26}
         self.hasItemModel = hasItemModel or bool(item_layers)
         self.model_parent = model_parent
 
