@@ -1,13 +1,5 @@
-from @builders import load
-import @configs as configs
-
 function_tag minecraft:load {"values": [(~/)]}
-
-def fSetup():
-    configs.load()
-
-#2025/11 -> 2511
-load('BP_VERSION', 2512, fSetup)
+execute run function ./setup_controller
 
 scoreboard players set #65536 ulg_gen 65536
 scoreboard players set #256 ulg_gen 256

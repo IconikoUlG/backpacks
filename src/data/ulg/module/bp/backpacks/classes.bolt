@@ -59,9 +59,10 @@ def _WriteAutoModels(obj) -> JsonModels:
         )
         
 class Backpack():
-    def __init__(self, id: str, translation: str, writeModelsFunc=_WriteAutoModels, model_layers=None, item_layers=None, direct_transform=None, recipe=None, model_parent="explorer", nbt=None, hasItemModel=None):
+    def __init__(self, id: str, translation: str, fallbackName: str = (id + " Backpack"), writeModelsFunc=_WriteAutoModels, model_layers=None, item_layers=None, direct_transform=None, recipe=None, model_parent="explorer", nbt=None, hasItemModel=None):
         self.id = id
         self.translation = translation
+        self.fallbackName = fallbackName
         self.writeModelsFunc = writeModelsFunc
         self.model_layers = model_layers
         self.item_layers = item_layers
@@ -76,6 +77,9 @@ class Backpack():
     
     def Translation(self) -> str:
         return self.translation
+
+    def FallbackName(self) -> str:
+        return self.fallbackName
 
     def Recipe(self) -> Optional[SimpleRecipe]:
         return self.recipe or None

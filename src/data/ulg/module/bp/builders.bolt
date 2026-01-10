@@ -2,7 +2,7 @@ import uuid
 import string
 from random import randint
 
-def load(datapackId : str, version : int, setupFunc = None):
+def load(datapackId : str, version : int, setupFunc = None, firstSetupFunc = None, nextSetupFunc = None, preSetupFunc = None, postSetupFunc = None):
     scoreboard objectives add ulg_gen dummy
     scoreboard objectives add ulg_intick dummy
     scoreboard objectives add ulg_intick1 dummy
@@ -10,7 +10,23 @@ def load(datapackId : str, version : int, setupFunc = None):
     scoreboard objectives add ulg_macro dummy
     if (setupFunc != None):
         unless score ('$'+datapackId) ulg_gen matches (str(version)+"..") run function ~/setup:
+            if (preSetupFunc != None):
+                raw # PRE SETUP
+                preSetupFunc()
+            raw # SETUP
+            scoreboard players operation ('$'+datapackId+".prev") ulg_gen = ('$'+datapackId) ulg_gen
             setupFunc()
+            if (firstSetupFunc != None):
+                execute run function ~/split_setups:
+                    say SPLIT SETUPS
+                    execute unless score ('$'+datapackId) ulg_gen matches 0.. run return run function ~/first_setup:
+                        firstSetupFunc()
+                    if (nextSetupFunc != None):
+                        execute run function ~/next_setup:
+                            nextSetupFunc()
+            if (postSetupFunc != None):
+                raw # POST SETUP
+                postSetupFunc()
     scoreboard players set ('$'+datapackId) ulg_gen (str(version))
 
 

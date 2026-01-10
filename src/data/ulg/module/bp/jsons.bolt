@@ -56,6 +56,9 @@ def P_bp_in_offhand():
 def P_is_sneaking():
     return defineP({"condition": "minecraft:entity_properties", "entity": "this", "predicate": {"is_sneaking": true}})
 
+def P_chance(chance=0.5):
+    return defineP({"condition": "minecraft:random_chance", "chance": chance})
+
 def __buildItemCheckInInventoryPredicate(containerData):
     terms = []
     for n in range(9,36):

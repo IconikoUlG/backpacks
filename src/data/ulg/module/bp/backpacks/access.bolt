@@ -1,4 +1,4 @@
-from ./backpacks import getAll, getRecipes, getConversions
+from ./backpacks import getAll, getMainVariants, getRecipes, getConversions
 
 def getBackpack(id : str):
     for bp in getAll():
