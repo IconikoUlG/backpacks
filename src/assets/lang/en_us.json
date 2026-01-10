@@ -1,7 +1,5 @@
 {
     "ulg.item.backpack": "Backpack",
-    "ulg.item.backpack.chest": "Chest Backpack",
-    "ulg.item.backpack.chest_christmas": "Christmas Backpack",
 	"ulg.item.backpack.explorer": "Exploration Backpack",
     "ulg.item.backpack.camping": "Camping Backpack",
     "ulg.item.backpack.yellow": "Yellow Exploration Backpack",
@@ -36,5 +34,8 @@
     "ulg.lore.oldversionbackpack": "This backpack is old. To be opened, it will need to be refurbished on a working table.",
     "ulg.lore.slots": "Slots: ",
     "ulg.lore.item_row": "%s x%s",
-    "ulg.lore.more": "+%s"
+    "ulg.lore.more": "+%s",
+    "ulg.item.backpack.chest": "Chest Backpack",
+    "ulg.item.backpack.chest_christmas": "Christmas Backpack",
+    "ulg.alert.no_drop_open": "You can't drop the backpack, it's still open!"
 }

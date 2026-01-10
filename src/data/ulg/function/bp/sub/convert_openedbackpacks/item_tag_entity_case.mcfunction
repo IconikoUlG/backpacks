@@ -1,3 +1,5 @@
+if data entity @s Item.components."minecraft:custom_data".bp.id.uniq at @s run return run function (~/back_to_hand)
+
 drop_macro = (~/drop_macro)
 
 data modify entity @s Item.components."minecraft:custom_data".bp.Opened set value false

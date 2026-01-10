@@ -32,8 +32,13 @@ def _fClose():
     item modify entity @s weapon.offhand IM_set_close()
     item modify entity @s weapon.offhand IM_set_inventory()
 
+    at @s run playsound minecraft:item.lead.untied master @s ~ ~ ~ 0.3 0.6 0.2
+    scoreboard players reset @s ulg_bp_using
+
     # set lore
-    function ulg:bp/sub/set_lore/exe {dataPath:'equipment.offhand',containerString:"weapon.offhand"}
+    # function ulg:bp/sub/set_lore/exe {dataPath:'equipment.offhand',containerString:"weapon.offhand"}
+    function ulg:bp/sub/set_container_comp/do {dataPath:'equipment.offhand',containerString:"weapon.offhand"}
+
 close = recallableFunction(_fClose)
 
 
@@ -52,6 +57,10 @@ def _fTryClose():
 try_close = recallableFunction(_fTryClose)
 
 def _fOpen():
+    if data entity @s equipment.offhand.components{"minecraft:custom_data":{bp:{newV:2b}}}:
+        function ulg:bp/sub/init26/update
+    function ulg:bp/sub/init26/check_id
+
     data remove storage ulg:backpack intick
     data modify storage ulg:backpack intick.BackPackName set from entity @s equipment.offhand.components."minecraft:custom_data".display.Name
 
@@ -61,6 +70,8 @@ def _fOpen():
     item modify entity @s weapon.offhand IM_set_open()
     item modify entity @s weapon.offhand IM_set_inventory()
 
+    at @s run playsound minecraft:item.lead.tied master @s ~ ~ ~ 0.3 0.6 0.2
+
     #FINALING
     #loot replace entity @s weapon.offhand loot ulg:bp/replace/opened_backpack
 
@@ -68,8 +79,9 @@ def _fOpen():
 
     execute unless entity @s[tag=ulg_knowsbackpack] run tellraw @s {"translate":"ulg.alert.checkyourinventory","color":"#ed7666"}
     tag @s[tag=!ulg_knowsbackpack] add ulg_knowsbackpack
-open = recallableFunction(_fOpen)
 
+    execute store result score @s ulg_bp_using run data get entity @s equipment.offhand.components."minecraft:custom_data".bp.id.uniq
+open = recallableFunction(_fOpen)
 
 ttag = genTickTag()
 if data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:false} run tag @s add (ttag)

@@ -24,8 +24,19 @@ def playerTick():
             item modify entity @s weapon.offhand IM_append_slots_lore()
             function ulg:bp/sub/set_lore/macro {Slot:-106,containerString:"weapon.offhand"}
 
-    if data entity @s Inventory[{components:{"minecraft:custom_data":{ulg:{BackPack:{newV:true}}}}}]:
+    if data entity @s Inventory[{components:{"minecraft:custom_data":{ulg:{BackPack:{newV:1b}}}}}]:
         function ulg:bp/sub/fix25/act
+
+    as @s[tag=!ulg.bp.carry] if data entity @s equipment.offhand.components."minecraft:custom_data".bp:
+        at @s run playsound minecraft:item.armor.equip_chain player @a[distance=..3] ~ ~ ~ 1 1 0.1
+        execute unless score @s ulg_bp_using matches 0.. if data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:1b}:
+            execute store result score @s ulg_bp_using run data get entity @s equipment.offhand.components."minecraft:custom_data".bp.id.uniq
+        tag @s add ulg.bp.carry
+    as @s[tag=ulg.bp.carry] unless data entity @s equipment.offhand.components."minecraft:custom_data".bp:
+        at @s run playsound minecraft:item.armor.equip_leather player @a[distance=..3] ~ ~ ~ 1 1 0.1
+        # if score @s ulg_bp_using matches 1.. at @s:
+        #     scoreboard players reset @s ulg_bp_using
+        tag @s remove ulg.bp.carry
 
     # handle COAS click
     if score @s ulg_bp_coas matches 1..: 
@@ -42,13 +53,13 @@ def entityTick():
     }
     bTables = ('#'+bTables)
 
+    as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:1b}}}}}] at @s run function ulg:bp/sub/convert_openedbackpacks/item_tag_entity_case
+    
     if score $CAN_PLACE_BACKPACKS ulg_gen matches 1 as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:0b}}}}}] at @s if block ~ ~-0.2 ~ (bTables):
         #handle anvil case
         if block ~ ~-0.2 ~ minecraft:anvil if block ~ ~ ~ minecraft:anvil return run execute align xyz positioned ~0.5 ~1 ~0.5 run function ulg:bp/sub/benching/tryplace
         align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
     as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{ulg:{BackPack:{}}}}}}] at @s if block ~ ~-0.3 ~ (bTables) align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
-
-    as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:1b}}}}}] at @s run function ulg:bp/sub/convert_openedbackpacks/item_tag_entity_case
 
     if score $TABLE_BACKPACKS_TICK ulg_gen matches 1 as @s[type=minecraft:armor_stand,tag=ulg.backpackModifiable] at @s run function ulg:bp/sub/benching/asbackpack
     

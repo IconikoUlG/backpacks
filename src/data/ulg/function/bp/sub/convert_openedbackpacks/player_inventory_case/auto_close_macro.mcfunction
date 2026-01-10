@@ -20,9 +20,10 @@ switch_inventory()
 from @jsons import IM_set_close, IM_set_inventory
 raw f"$item modify entity @s container.$(Slot) {IM_set_close()}"
 raw f"$item modify entity @s container.$(Slot) {IM_set_inventory()}"
+scoreboard players reset @s ulg_bp_using
 
 # set lore
-$function ulg:bp/sub/set_lore/exe {dataPath:"Inventory[Slot:$(Slot)b]",containerString:"container.$(Slot)"}
+$function ulg:bp/sub/set_container_comp/do {dataPath:"Inventory[{Slot:$(Slot)b}]",containerString:"container.$(Slot)"}
 
 title @s[tag=!ulg_knowsbackpack2] actionbar {"translate":"ulg.alert.auto_closed","color":"#ed7666"}
 tag @s[tag=!ulg_knowsbackpack2] add ulg_knowsbackpack2

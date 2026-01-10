@@ -3,8 +3,10 @@ import @configs as configs
 import @backpacks/access as backpacks
 
 #2025/11 -> 2511
-CURRENT_VERSION = 2513
-CURRENT_VERSION_STR = "25.13"
+# +
+# Versioning, eg beta2 -> 02, release -> 99
+CURRENT_VERSION = 260102
+CURRENT_VERSION_STR = "26.1-beta2" # beta99 = RELEASE
 
 def fPreSetup():
     pass

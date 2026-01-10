@@ -31,5 +31,8 @@
     "ulg.alert.auto_closed": "背包已关闭",
     "ulg.alert.still_open": "你不能把背包放下来，背包还打开着！",
     "ulg.alert.oldversionbackpack": "这个背包坏掉了。如何打开它？这里有一个提示。",
-    "ulg.lore.oldversionbackpack": "这是个旧背包。你需要在工作台上修复它。"
+    "ulg.lore.oldversionbackpack": "这是个旧背包。你需要在工作台上修复它。",
+    "ulg.item.backpack.chest": "箱子背包",
+    "ulg.item.backpack.chest_christmas": "圣诞箱子背包",
+    "ulg.alert.no_drop_open": "你不能丢弃背包，它还开着！"
 }

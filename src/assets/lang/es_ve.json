@@ -11,5 +11,8 @@
     "ulg.alert.auto_closed": "La mochila se ha cerrado.",
     "ulg.alert.still_open": "¡No puedes colocar la mochila ahí, aún está abierta!",
     "ulg.alert.oldversionbackpack": "Esta mochila está mohosa. ¿Cómo recuperarla? Haz clic aquí.",
-    "ulg.lore.oldversionbackpack": "Esta mochila es vieja. Para abrirla, necesita ser trabajada apoyada en una mesa de crafteo."
+    "ulg.lore.oldversionbackpack": "Esta mochila es vieja. Para abrirla, necesita ser trabajada apoyada en una mesa de crafteo.",
+    "ulg.item.backpack.chest": "Mochila Cofre",
+    "ulg.item.backpack.chest_christmas": "Mochila de Cofre Navideña",
+    "ulg.alert.no_drop_open": "No puedes soltar la mochila, aún está abierta."
 }

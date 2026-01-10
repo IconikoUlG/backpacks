@@ -29,5 +29,8 @@
     "ulg.alert.auto_closed": "Lo zaino si è richiuso.",
     "ulg.alert.still_open": "Non puoi piazzare lo zaino lì, è ancora aperto!",
     "ulg.alert.oldversionbackpack": "Questo zaino si è ammuffito. Come recuperarlo? Clicca qui.",
-    "ulg.lore.oldversionbackpack": "Questo zaino è vecchio. Per aprirlo, andrà lavorato su una crafting table."
+    "ulg.lore.oldversionbackpack": "Questo zaino è vecchio. Per aprirlo, andrà lavorato su una crafting table.",
+    "ulg.item.backpack.chest": "Zaino Baule",
+    "ulg.item.backpack.chest_christmas": "Zaino Baule di Natale",
+    "ulg.alert.no_drop_open": "Non puoi droppare lo zaino, è ancora aperto!"
 }

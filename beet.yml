@@ -5,7 +5,6 @@ data_pack:
   - pack.png: src/dp.pack.png
   - pack.mcmeta: src/dp.pack.mcmeta
   name: Backpacks1_21_11-DP
-  pack_format: 88
   zipped: false
 description: Working Backpacks
 id: bp
@@ -33,5 +32,4 @@ resource_pack:
   - pack.png: src/rp.pack.png
   - pack.mcmeta: src/rp.pack.mcmeta
   name: Backpacks1_21_11-Resources
-  pack_format: 69
   zipped: false

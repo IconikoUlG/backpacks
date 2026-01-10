@@ -1,5 +1,7 @@
 #say step 0
 
+at @s run playsound minecraft:item.dye.use block @a[distance=..10] ~ ~ ~ 0.5 0.5
+
 execute unless score @s ulg_gen matches -1..10 run scoreboard players set @s ulg_gen -1
 
 #ulg:macro table_modify has value {no_consume:false}

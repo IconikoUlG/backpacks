@@ -6,6 +6,8 @@ data modify entity @e[type=item,tag=ulg_intick151,limit=1] Item set from entity 
 kill @e[type=interaction,tag=ulg.backpackModifiable.hitbox,distance=..0.1,sort=nearest,limit=1]
 kill @s
 
+at @s playsound minecraft:item.bundle.remove_one block @a[distance=..10] ~ ~ ~ 1 1 0.1
+
 tp @e[type=item,tag=ulg_intick151,limit=1] ~ ~0.3 ~
 
 tag @e remove ulg_intick151

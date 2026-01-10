@@ -11,5 +11,8 @@
     "ulg.alert.auto_closed": "Le sac à dos s'est refermé.",
     "ulg.alert.still_open": "Vous ne pouvez pas placer le sac à dos là, il est encore ouvert!",
     "ulg.alert.oldversionbackpack": "Ce sac à dos est moisi. Comment le récupérer? Cliquez ici.",
-    "ulg.lore.oldversionbackpack": "Ce sac à dos est vieux. Pour l'ouvrir, il doit être travaillé sur une table de craft."
+    "ulg.lore.oldversionbackpack": "Ce sac à dos est vieux. Pour l'ouvrir, il doit être travaillé sur une table de craft.",
+    "ulg.item.backpack.chest": "Sac à Dos de Cofre",
+    "ulg.item.backpack.chest_christmas": "Sac à Dos de Cofre de Noël",
+    "ulg.alert.no_drop_open": "Vous ne pouvez pas lâcher le sac à dos, il est encore ouvert!"
 }
