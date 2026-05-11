@@ -19,10 +19,10 @@ def playerTick():
     if data entity @s Inventory[].components."minecraft:custom_data".bp{Opened:1b}:
         unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:1b}:
             function ulg:bp/sub/convert_openedbackpacks/player_inventory_case
-    if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
-        unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{isLoreInit:true}:
-            item modify entity @s weapon.offhand IM_append_slots_lore()
-            function ulg:bp/sub/set_lore/macro {Slot:-106,containerString:"weapon.offhand"}
+    # if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
+        # unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{isLoreInit:true}:
+            # item modify entity @s weapon.offhand IM_append_slots_lore()
+            # function ulg:bp/sub/set_lore/macro {Slot:-106,containerString:"weapon.offhand"}
 
     if data entity @s Inventory[{components:{"minecraft:custom_data":{ulg:{BackPack:{newV:1b}}}}}]:
         function ulg:bp/sub/fix25/act
@@ -73,6 +73,7 @@ entity_type_tag (eTickable) {
     "minecraft:player",
     "minecraft:item",
     "minecraft:item_frame",
+    "minecraft:glow_item_frame",
     "minecraft:armor_stand",
     "minecraft:interaction"
   ]

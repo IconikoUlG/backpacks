@@ -13,4 +13,5 @@ execute in minecraft:overworld positioned 829999 -64 829999 run item replace blo
 execute in minecraft:overworld positioned 829999 -64 829999 run item replace entity @s weapon.offhand from block ~ ~ ~ container.0
 $execute in minecraft:overworld positioned 829999 -64 829999 run item replace entity @s container.$(Slot) from block ~-1 ~ ~ container.0
 
+scoreboard players add @s ulg_bp_cheat 3
 tellraw @s {"translate":"ulg.alert.still_open","color":"#ed7666"}

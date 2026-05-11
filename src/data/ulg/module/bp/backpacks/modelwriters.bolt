@@ -663,8 +663,10 @@ def explorerBackpack(obj):
     id = obj.id
     return JsonModels(
         closed = {
+            "texture_size": [64, 64],
             "textures": {
-                "backpack": "ulg_bp/"+id
+                "backpack": "ulg_bp/"+id,
+                "particle": "ulg_bp/"+id
             },
             "elements": [
                 {
@@ -793,7 +795,7 @@ def explorerBackpack(obj):
                         "east": {"uv": [2.5, 3, 2.75, 3.25], "texture": "#backpack", "tintindex": 0},
                         "south": {"uv": [2.5, 3, 4.5, 3.25], "texture": "#backpack", "tintindex": 0},
                         "west": {"uv": [2.5, 3, 2.75, 3.25], "texture": "#backpack", "tintindex": 0},
-                        "up": {"uv": [10, 12, 18, 13], "texture": "#backpack", "tintindex": 0},
+                        "up": {"uv": [10, 12, 16, 13], "texture": "#backpack", "tintindex": 0},
                         "down": {"uv": [2.5, 3, 4.5, 3.25], "texture": "#backpack", "tintindex": 0}
                     }
                 },
@@ -933,7 +935,7 @@ def explorerBackpack(obj):
                     "rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 5]},
                     "faces": {
                         "north": {"uv": [10, 3.5, 10.5, 5.5], "texture": "#backpack", "tintindex": 3},
-                        "east": {"uv": [42, 14, 48, 22], "texture": "#backpack", "tintindex": 3},
+                        "east": {"uv": [16, 14, 16, 16], "texture": "#backpack", "tintindex": 3},
                         "south": {"uv": [12, 3.5, 12.5, 5.5], "texture": "#backpack", "tintindex": 3},
                         "west": {"uv": [13, 3.5, 14.5, 5.5], "texture": "#backpack", "tintindex": 3},
                         "up": {"uv": [12.5, 2, 13, 3.5], "texture": "#backpack", "tintindex": 3},
@@ -1128,7 +1130,11 @@ def explorerBackpack(obj):
         },
         opened = {
             "credit": "Made with Blockbench",
-            "textures": {"backpack": "ulg_bp/"+id},
+            "texture_size": [64, 64],
+            "textures": {
+                "backpack": "ulg_bp/"+id,
+                "particle": "ulg_bp/"+id
+            },
             "elements": [
                 {
                     "from": [3.015, 13.385, 18.065],
@@ -1305,7 +1311,7 @@ def explorerBackpack(obj):
                     "rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 5]},
                     "faces": {
                         "north": {"uv": [10, 3.5, 10.5, 5.5], "texture": "#backpack", "tintindex": 3},
-                        "east": {"uv": [42, 14, 48, 22], "texture": "#backpack", "tintindex": 3},
+                        "east": {"uv": [16, 14, 16, 16], "texture": "#backpack", "tintindex": 3},
                         "south": {"uv": [12, 3.5, 12.5, 5.5], "texture": "#backpack", "tintindex": 3},
                         "west": {"uv": [13, 3.5, 14.5, 5.5], "texture": "#backpack", "tintindex": 3},
                         "up": {"uv": [12.5, 2, 13, 3.5], "texture": "#backpack", "tintindex": 3},

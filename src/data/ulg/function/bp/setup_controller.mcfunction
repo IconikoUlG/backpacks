@@ -5,8 +5,12 @@ import @backpacks/access as backpacks
 #2025/11 -> 2511
 # +
 # Versioning, eg beta2 -> 02, release -> 99
-CURRENT_VERSION = 260102
-CURRENT_VERSION_STR = "26.1-beta2" # beta99 = RELEASE
+# +
+# Fixes 0/1/2/3 .. 9
+# eg 2601991 -> 26.1 (or 2026/01) + Release (99) + Fix1 (1)
+CURRENT_VERSION = 2601991
+CURRENT_VERSION_STR = "26.1" # beta99 = RELEASE
+CURRENT_VERSION_FULLSTR = "26.1-Release Fix1"
 
 def fPreSetup():
     pass
@@ -24,7 +28,7 @@ def fFirstSetup():
     tellraw @a [{"text":"--- ","bold":true,"color":"#FFC000"},{"text":f"[Working Backpacks {CURRENT_VERSION_STR}]","bold":true,"color":"#FFFF00"},{"text":" ---","bold":true,"color":"#FFC000"},{"text":" \n"},{"translate":"ulg.bp.ad.installed","fallback":"was installed correctly\nStay tuned for updates! \u0020","color":"#FFC000"},{"text":"UltroGhast©","color":"yellow"}]
 
 def fNextSetup():
-    tellraw @a [{"text":"--- ","bold":true,"color":"#FFC000"},{"text":"[Working Backpacks]","bold":true,"color":"#FFFF00"},{"text":" ---","bold":true,"color":"#FFC000"},{"text":" \n"},{"translate":"ulg.bp.ad.updated","fallback":"was updated to version ","color":"#FFC000"},{"text":f"{CURRENT_VERSION_STR}","bold":true,"color":"#FFFF00"}]
+    tellraw @a [{"text":"--- ","bold":true,"color":"#FFC000"},{"text":"[Working Backpacks]","bold":true,"color":"#FFFF00"},{"text":" ---","bold":true,"color":"#FFC000"},{"text":" \n"},{"translate":"ulg.bp.ad.updated","fallback":"was updated to version ","color":"#FFC000"},{"text":f"{CURRENT_VERSION_STR}","bold":true,"color":"#FFFF00","underlined":true,"hover_event":{"action":"show_text","value":f"{CURRENT_VERSION_FULLSTR}"}}]
 
 def fPostSetup():
     data modify storage ulg:backpack info set from storage ulg:backpack intick.tinfo

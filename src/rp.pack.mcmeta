@@ -1,9 +1,9 @@
 {
   "pack": {
     "min_format": 46,
-    "max_format": [77, 0],
-    "description": "§6Working Backpacks§7 26.1-beta2\n - by §1Ultro§9Ghast",
+    "max_format": [84, 0],
+    "description": "§6Working Backpacks§7 26.1\n - by §1Ultro§9Ghast",
     "pack_format": 55,
-    "supported_formats": [46,77]
+    "supported_formats": [46,84]
   }
 }
