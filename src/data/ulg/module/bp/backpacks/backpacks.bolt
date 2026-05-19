@@ -25,7 +25,7 @@ explorer = Backpack(
             default=explorer_base_color
         ),
         ModelLayer(
-            modifs=ModifsLayer(label="Top", accepts=["dyes"]),
+            modifs=ModifsLayer(label='Top Lid', accepts=["dyes"]),
             cmd_index=1,
             default=explorer_base_color
         ),
@@ -125,7 +125,7 @@ chest_normal = Backpack(
     ),
     model_layers = [
         ModelLayer(
-            modifs=ModifsLayer(label="Body", accepts=["woods"]),
+            modifs=ModifsLayer(label="Wood", accepts=["woods"]),
             cmd_index=0,
             default=chest_base_color
         ),

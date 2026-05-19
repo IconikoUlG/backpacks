@@ -1,6 +1,7 @@
 ##say function : use_backpack
 from @builders import genTickTag, recallableFunction
 from @jsons import IM_set_open, IM_set_close, IM_set_inventory, _P_shulker_boxes_check, _P_bundles_check, _P_backpacks_check, P_boxes_check
+from bolt_expressions import Data
 
 #say executed: use_backpack
 
@@ -56,10 +57,15 @@ def _fTryClose():
     close()
 try_close = recallableFunction(_fTryClose)
 
+from @backpacks/lock import checkOwner
 def _fOpen():
     if data entity @s equipment.offhand.components{"minecraft:custom_data":{bp:{newV:2b}}}:
         function ulg:bp/sub/init26/update
     function ulg:bp/sub/init26/check_id
+
+    ensureOwner = checkOwner(Data.entity('@s').equipment.offhand,Data.entity('@s'))
+    if ensureOwner == false:
+        return run title @s actionbar {"translate": "ulg.alert.not_yours", "fallback": "This backpack is not yours!", "color": "#ff1e00"}
 
     data remove storage ulg:backpack intick
     data modify storage ulg:backpack intick.BackPackName set from entity @s equipment.offhand.components."minecraft:custom_data".display.Name

@@ -1,13 +1,23 @@
-particle minecraft:dust{color:[1.000,0.827,0.129],scale:0.5} ~ ~0.4 ~ 0.2 0.2 0.2 1 20 normal @a[distance=..6,tag=ulg.intick.target]
+##say conidtional remove
+from @builders import wrap
 
-summon minecraft:item ~ 0 ~ {Tags:["ulg_intick151","global.ignore"],Item:{id:"minecraft:carrot",count:1b}}
-data modify entity @e[type=item,tag=ulg_intick151,limit=1] Item set from entity @s equipment.head
+@wrap(~/discard)
+def discard():
+    kill @e[type=interaction,tag=ulg.backpackModifiable.hitbox,distance=..0.1,sort=nearest,limit=1]
+    kill @s
 
-kill @e[type=interaction,tag=ulg.backpackModifiable.hitbox,distance=..0.1,sort=nearest,limit=1]
-kill @s
+@wrap(~/remove)
+def remove():
+    particle minecraft:dust{color:[1.000,0.827,0.129],scale:0.5} ~ ~0.4 ~ 0.2 0.2 0.2 1 20 normal @a[distance=..6,tag=ulg.intick.target]
 
-at @s playsound minecraft:item.bundle.remove_one block @a[distance=..10] ~ ~ ~ 1 1 0.1
+    summon minecraft:item ~ 0 ~ {Tags:["ulg_intick151","ulg.bp.nobench"],Item:{id:"minecraft:carrot",count:1b}}
+    data modify entity @e[type=item,tag=ulg_intick151,limit=1] Item set from entity @s equipment.head
 
-tp @e[type=item,tag=ulg_intick151,limit=1] ~ ~0.3 ~
+    at @s playsound minecraft:item.bundle.remove_one block @a[distance=..10] ~ ~ ~ 1 1 0.1
 
-tag @e remove ulg_intick151
+    tp @e[type=item,tag=ulg_intick151,limit=1] ~ ~0.3 ~
+
+    tag @e remove ulg_intick151
+    discard()
+
+remove()

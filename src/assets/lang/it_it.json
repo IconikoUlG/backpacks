@@ -32,5 +32,13 @@
     "ulg.lore.oldversionbackpack": "Questo zaino è vecchio. Per aprirlo, andrà lavorato su una crafting table.",
     "ulg.item.backpack.chest": "Zaino Baule",
     "ulg.item.backpack.chest_christmas": "Zaino Baule di Natale",
-    "ulg.alert.no_drop_open": "Non puoi droppare lo zaino, è ancora aperto!"
+    "ulg.alert.no_drop_open": "Non puoi droppare lo zaino, è ancora aperto!",
+    "ulg.lore.owner": "Proprietario: %s",
+    "ulg.item.backpack.lock": "Lucchetto per zaino",
+    "ulg.alert.not_yours": "Questo zaino non è tuo!",
+    "ulg.alert.already_owned": "Questo zaino ha già un proprietario!",
+    "ulg.alert.owner_set": "Proprietario impostato! Ora solo tu puoi aprire questo zaino",
+    "ulg.alert.editing": "Modificando: %s",
+    "ulg.bp.ad.installed": "è stato installato correttamente\nResta sintonizzato per gli aggiornamenti! \u0020",
+    "ulg.bp.ad.updated": "è stato aggiornato alla versione "
 }

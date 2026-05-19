@@ -14,5 +14,13 @@
     "ulg.lore.oldversionbackpack": "Ce sac à dos est vieux. Pour l'ouvrir, il doit être travaillé sur une table de craft.",
     "ulg.item.backpack.chest": "Sac à Dos de Cofre",
     "ulg.item.backpack.chest_christmas": "Sac à Dos de Cofre de Noël",
-    "ulg.alert.no_drop_open": "Vous ne pouvez pas lâcher le sac à dos, il est encore ouvert!"
+    "ulg.alert.no_drop_open": "Vous ne pouvez pas lâcher le sac à dos, il est encore ouvert!",
+    "ulg.lore.owner": "Propriétaire : %s",
+    "ulg.item.backpack.lock": "Cadenas pour sac à dos",
+    "ulg.alert.not_yours": "Ce sac à dos ne vous appartient pas !",
+    "ulg.alert.already_owned": "Ce sac à dos a déjà un propriétaire !",
+    "ulg.alert.owner_set": "Propriétaire défini ! Maintenant, seul vous pouvez ouvrir ce sac à dos",
+    "ulg.alert.editing": "Modification : %s",
+    "ulg.bp.ad.installed": "a été installé correctement\nRestez à l'écoute pour les mises à jour ! \u0020",
+    "ulg.bp.ad.updated": "a été mis à jour vers la version "
 }

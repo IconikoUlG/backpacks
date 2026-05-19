@@ -1,0 +1,80 @@
+from bolt_expressions import Scoreboard, Data
+
+def hasOwner(bpItem): # not working due to bolt expressions
+    if bpItem.components."minecraft:custom_data".bp.Owner:
+        return true
+    return false
+
+from @jsons import LT_drop_head
+from mecha import Mecha
+mc = ctx.inject(Mecha)
+def setOwner(bpItem,playerData,playerSel):
+    bpItem.components."minecraft:custom_data".bp.Owner = playerData.UUID
+    as mc.parse(playerData._target, using="selector") positioned ~ -65 ~:
+        loot spawn ~ ~ ~ loot (LT_drop_head())  # Item.components."minecraft:profile".name
+    lore = Data.storage(ulg:macro).tick.lock.ownerLore
+    lore = {
+      "translate": "ulg.lore.owner",
+      "fallback": "Owner: %s","with":[],"color": "#B1B3B3","italic": false
+    }
+    function (~/m_inject_pname):
+      $data modify storage ulg:macro tick.lock.ownerLore.with set value ['$(name)']
+    function (~/m_inject_pname) with entity @n[type=item,nbt={Item:{components:{"minecraft:custom_data":{ulg:{id:"intick"}}}}}] Item.components."minecraft:profile"
+    bpItem.components."minecraft:lore".append(lore)
+    # set first row of the lore to "Owner: <Player Name>"
+    kill @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{ulg:{id:"intick"}}}}}]
+
+def checkOwner(bpItem,playerData):
+    result = Data.storage(ulg:macro).tick.lock.checkOwner
+    result = false
+    if (bpItem.components."minecraft:custom_data".bp.Owner == playerData.UUID):
+        result = true
+    if not bpItem.components."minecraft:custom_data".bp.Owner:
+        result = true
+    return result
+
+import ./pather as pather
+recipe pather.makeJsonRecipePath('lock') {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:iron_nugget",
+    "minecraft:gold_ingot",
+    "minecraft:string"
+  ],
+  "result": {
+    "id": "minecraft:gold_nugget",
+    "components": {
+      "minecraft:item_model": pather.makeItemModelPath('lock'),
+      "minecraft:custom_model_data": {},
+      "minecraft:custom_data": {
+        "ulg": {
+          "item_id": "bp/lock"
+        }
+      },
+      "minecraft:item_name": {
+        "translate": "ulg.item.backpack.lock",
+        "fallback": "Lock",
+        "color": "gold",
+        "italic": false
+      }
+    },
+    "count": 1
+  }
+}
+
+# .components."minecraft:custom_data".ulg.item_id == "bp/lock"
+
+item_model (pather.makeItemModelPath('lock')) {
+  "model": {
+    "type": "minecraft:model",
+    "model": pather.makeJsonModelsPath('lock')
+  }
+}
+
+model pather.makeJsonModelsPath('lock') {
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ulg_bp/item/lock"
+  }
+}

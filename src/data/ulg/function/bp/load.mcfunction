@@ -18,6 +18,8 @@ scoreboard objectives add ulg_bp_cheat dummy
 execute in minecraft:overworld run forceload add 829999 829999
 forceload add 829999 829999
 
+title @a actionbar {"translate":"ulg.bp.empty","fallback":"The required Resourcepack for backpacks datapack may be missing","color":"red","bold":true}
+
 unless score $ULG_BP_WORLDID ulg_gen matches 1..:
     store result score $ULG_BP_WORLDID ulg_gen run random value 1..99999
     scoreboard players set $ULG_BP_IDCOUNT ulg_gen 0

@@ -5,12 +5,15 @@ function_tag minecraft:tick {"values": [(~/)]}
 def coasClick():
     if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
         function ulg:bp/sub/use_backpack
+    unless data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV if data entity @s SelectedItem   .components."minecraft:custom_data".bp.newV:
+        item replace entity @s weapon.offhand from entity @s weapon.mainhand
+        item replace entity @s weapon.mainhand with minecraft:air
     if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
         unless data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack.newV:
             tellraw @s {"translate":"ulg.alert.oldversionbackpack","color":"#ed7666","clickEvent": {"action":"open_url","value":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks/open_mouldy_backpack","underlined":true}}
 
 def playerTick():
-    from @jsons import IM_make_mouldy, IM_append_slots_lore
+    from @jsons import IM_make_mouldy #, IM_append_slots_lore
 
     if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
         unless data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack.newV:
@@ -19,10 +22,6 @@ def playerTick():
     if data entity @s Inventory[].components."minecraft:custom_data".bp{Opened:1b}:
         unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:1b}:
             function ulg:bp/sub/convert_openedbackpacks/player_inventory_case
-    # if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
-        # unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{isLoreInit:true}:
-            # item modify entity @s weapon.offhand IM_append_slots_lore()
-            # function ulg:bp/sub/set_lore/macro {Slot:-106,containerString:"weapon.offhand"}
 
     if data entity @s Inventory[{components:{"minecraft:custom_data":{ulg:{BackPack:{newV:1b}}}}}]:
         function ulg:bp/sub/fix25/act
@@ -53,13 +52,14 @@ def entityTick():
     }
     bTables = ('#'+bTables)
 
-    as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:1b}}}}}] at @s run function ulg:bp/sub/convert_openedbackpacks/item_tag_entity_case
-    
-    if score $CAN_PLACE_BACKPACKS ulg_gen matches 1 as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:0b}}}}}] at @s if block ~ ~-0.2 ~ (bTables):
+    as @s[nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:1b}}}}}] at @s run function ulg:bp/sub/convert_openedbackpacks/item_tag_entity_case
+    as @s[type=minecraft:item] if data entity @s Item.components."minecraft:custom_data".bp run data modify entity @s Age set value 100s
+
+    if score $CAN_PLACE_BACKPACKS ulg_gen matches 1 as @s[nbt={Item:{components:{"minecraft:custom_data":{bp:{Opened:0b}}}}},tag=!ulg.bp.nobench] at @s if block ~ ~-0.2 ~ (bTables):
         #handle anvil case
         if block ~ ~-0.2 ~ minecraft:anvil if block ~ ~ ~ minecraft:anvil return run execute align xyz positioned ~0.5 ~1 ~0.5 run function ulg:bp/sub/benching/tryplace
         align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
-    as @s[tag=!global.ignore,nbt={Item:{components:{"minecraft:custom_data":{ulg:{BackPack:{}}}}}}] at @s if block ~ ~-0.3 ~ (bTables) align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
+    as @s[nbt={Item:{components:{"minecraft:custom_data":{ulg:{BackPack:{}}}}}}] at @s if block ~ ~-0.3 ~ (bTables) align xyz positioned ~0.5 ~ ~0.5 run function ulg:bp/sub/benching/tryplace
 
     if score $TABLE_BACKPACKS_TICK ulg_gen matches 1 as @s[type=minecraft:armor_stand,tag=ulg.backpackModifiable] at @s run function ulg:bp/sub/benching/asbackpack
     

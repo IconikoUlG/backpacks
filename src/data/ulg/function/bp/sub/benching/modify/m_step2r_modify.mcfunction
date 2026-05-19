@@ -1,3 +1,6 @@
+# $say modify with idx $(idx)
+data modify storage ulg:macro table_modify.didModify set value true
+
 # Retrieve Original RGB Value
 $execute store result score $OGrgb ulg_intick run data get entity @s equipment.head.components."minecraft:custom_model_data".colors[$(idx)]
 

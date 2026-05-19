@@ -1,6 +1,8 @@
+# step 0
+# - handle direct conversions (redirect to m_step0_alt)
+# - ensure bp has layers
+# - ensure item is in item group
 #say step 0
-
-at @s run playsound minecraft:item.dye.use block @a[distance=..10] ~ ~ ~ 0.5 0.5
 
 execute unless score @s ulg_gen matches -1..10 run scoreboard players set @s ulg_gen -1
 

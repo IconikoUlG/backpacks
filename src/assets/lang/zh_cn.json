@@ -34,5 +34,13 @@
     "ulg.lore.oldversionbackpack": "这是个旧背包。你需要在工作台上修复它。",
     "ulg.item.backpack.chest": "箱子背包",
     "ulg.item.backpack.chest_christmas": "圣诞箱子背包",
-    "ulg.alert.no_drop_open": "你不能丢弃背包，它还开着！"
+    "ulg.alert.no_drop_open": "你不能丢弃背包，它还开着！",
+    "ulg.lore.owner": "所有者：%s",
+    "ulg.item.backpack.lock": "背包挂锁",
+    "ulg.alert.not_yours": "这个背包不是你的！",
+    "ulg.alert.already_owned": "这个背包已经有主人了！",
+    "ulg.alert.owner_set": "所有者已设置！现在只有你可以打开这个背包",
+    "ulg.alert.editing": "正在编辑：%s",
+    "ulg.bp.ad.installed": "已成功安装\n敬请期待更新！ \u0020",
+    "ulg.bp.ad.updated": "已更新到版本 "
 }

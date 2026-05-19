@@ -1,7 +1,7 @@
 def _makePath(root,dest=None):
     if ((dest) and not dest.startswith('/')):
         dest = "/"+dest
-    return root+dest    
+    return root+(dest or "")    
 
 def makeItemModelPath(bpId):
     return "ulg:backpack/"+bpId

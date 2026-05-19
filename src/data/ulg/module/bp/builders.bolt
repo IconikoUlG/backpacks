@@ -86,6 +86,7 @@ def handleCondition(conditionable,iftrue,iffalse):
         iffalse()
     tag @s remove (ttag)
 
+GENERATED_UUIDS_LIST = []
 def _random_uuid_16():
     allowed = set(string.ascii_lowercase + string.digits)
     result = []
@@ -96,4 +97,88 @@ def _random_uuid_16():
             if len(result) == 16:
                 break
 
-    return 'u'+''.join(result)
+    result = 'u'+''.join(result)
+    if result in GENERATED_UUIDS_LIST:
+        return _random_uuid_16()
+    GENERATED_UUIDS_LIST.append(result)
+    return result
+
+from functools import wraps
+from bolt_expressions import Scoreboard
+
+IS_TESTING = False
+
+def log(text):
+    if (IS_TESTING):
+        say (text)
+
+def testonly(func):
+    def wrapper(*args, **kwargs):
+        if (IS_TESTING):
+            func(*args, **kwargs)
+        pass
+    return wrapper
+
+def debug(arg=None):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if (IS_TESTING):
+                say (arg or ('run: ' + func.__name__))
+            func(*args, **kwargs)
+        return wrapper
+        
+
+    # Case 1: used as @debug (no parentheses)
+    if callable(arg):
+        func = arg
+        arg = None
+        return decorator(func)
+
+    # Case 2: used as @debug(...)
+    return decorator
+
+__declaredNamedFuncs = []
+def wrap(name=None, doreturn=False):
+    name = name or (str(./wrapped) + '/' + _random_uuid_16())
+    def decorator(func):
+        __declaredNamedFuncs.append(name)
+        function (name):
+            func()
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if (doreturn):
+                if (name):
+                    if (name in __declaredNamedFuncs):
+                        execute run return run function (''+str(name))
+                    else:
+                        __declaredNamedFuncs.append(name)
+                        execute run return run function (''+str(name)):
+                            func(*args, **kwargs)
+                else:
+                    execute run return run execute:
+                        func(*args, **kwargs)
+            else:
+                if (name):
+                    if (name in __declaredNamedFuncs):
+                        execute run function (''+str(name))
+                    else:
+                        __declaredNamedFuncs.append(name)
+                        execute run function (''+str(name)):
+                            func(*args, **kwargs)
+                else:
+                    execute run execute:
+                        func(*args, **kwargs)
+        return wrapper
+        
+
+    if callable(name):
+        func = name
+        name = None
+        return decorator(func)
+
+    return decorator
+
+def forcedef(func):
+    func()
+    return func

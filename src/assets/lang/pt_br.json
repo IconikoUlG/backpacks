@@ -14,5 +14,13 @@
     "ulg.lore.oldversionbackpack": "Esta mochila é velha. Para abri-la, precisa ser trabalhada em uma mesa de trabalho.",
     "ulg.item.backpack.chest": "Mochila de Baú",
     "ulg.item.backpack.chest_christmas": "Mochila de Cofre Natalina",
-    "ulg.alert.no_drop_open": "Não pode soltar a mochila, ainda está aberta."
+    "ulg.alert.no_drop_open": "Não pode soltar a mochila, ainda está aberta.",
+    "ulg.lore.owner": "Dono: %s",
+  "ulg.item.backpack.lock": "Trancar",
+  "ulg.alert.not_yours": "Esta mochila não é sua!",
+  "ulg.alert.already_owned": "Esta mochila já possui um dono!",
+  "ulg.alert.owner_set": "Dono definido! Agora apenas você pode abrir esta mochila",
+  "ulg.alert.editing": "Editando: %s",
+  "ulg.bp.ad.installed": "foi instalado corretamente\nFique ligado para atualizações! \u0020",
+  "ulg.bp.ad.updated": "foi atualizado para a versão "
 }

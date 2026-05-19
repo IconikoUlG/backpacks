@@ -4,10 +4,10 @@ data_pack:
   - data: src/data
   - pack.png: src/dp.pack.png
   - pack.mcmeta: src/dp.pack.mcmeta
-  name: Backpacks26.1-DP
+  name: Backpacks26.2-DP
   zipped: false
 description: Working Backpacks
-id: bp
+id: ulg
 meta:
   bolt:
     entrypoint: '*'
@@ -18,7 +18,7 @@ meta:
       assets/minecraft/atlases/blocks.json: src/assets/textures/atlas.json
       assets/minecraft/textures/ulg_bp: src/assets/textures
       assets/ulg_bp/lang: src/assets/lang
-name: Backpacks x 26.1
+name: Backpacks x 26.2
 output: .out
 pipeline:
 - bolt_import
@@ -26,10 +26,11 @@ pipeline:
 - beet.contrib.copy_files
 require:
 - bolt
+- bolt_expressions
 resource_pack:
   load:
   - assets: src/assets
   - pack.png: src/rp.pack.png
   - pack.mcmeta: src/rp.pack.mcmeta
-  name: Backpacks26.1-Resources
+  name: Backpacks26.2-Resources
   zipped: false

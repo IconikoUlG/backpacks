@@ -125,7 +125,8 @@ TOGGLES = {
     "CAN_PLACE_BACKPACKS": [1, 1],
     "CAN_MODIFY_BACKPACKS": [1, 1],
     "TABLE_BACKPACKS_TICK": [1, 1],
-    "NO_BOX_CHEAT": [1, 1]
+    "NO_BOX_CHEAT": [1, 1],
+    "CAN_LOCK_BACKPACKS": [1, 1]
 }
 
 def load():

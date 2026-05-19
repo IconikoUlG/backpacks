@@ -37,5 +37,14 @@
     "ulg.lore.more": "+%s",
     "ulg.item.backpack.chest": "Chest Backpack",
     "ulg.item.backpack.chest_christmas": "Christmas Backpack",
-    "ulg.alert.no_drop_open": "You can't drop the backpack, it's still open!"
+    "ulg.alert.no_drop_open": "You can't drop the backpack, it's still open!",
+    "ulg.bp.empty": "",
+    "ulg.lore.owner": "Owner: %s",
+    "ulg.item.backpack.lock": "Backpack Lock",
+    "ulg.alert.not_yours": "This backpack is not yours!",
+    "ulg.alert.already_owned": "This backpack is already owned!",
+    "ulg.alert.owner_set": "Owner set! Now only you can open this backpack",
+    "ulg.alert.editing": "Editing: %s",
+    "ulg.bp.ad.installed": "was installed correctly\nStay tuned for updates! \u0020",
+    "ulg.bp.ad.updated": "was updated to version "
 }

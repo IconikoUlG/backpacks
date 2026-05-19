@@ -7,10 +7,10 @@ import @backpacks/access as backpacks
 # Versioning, eg beta2 -> 02, release -> 99
 # +
 # Fixes 0/1/2/3 .. 9
-# eg 2601991 -> 26.1 (or 2026/01) + Release (99) + Fix1 (1)
-CURRENT_VERSION = 2601991
-CURRENT_VERSION_STR = "26.1" # beta99 = RELEASE
-CURRENT_VERSION_FULLSTR = "26.1-Release Fix1"
+# eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
+CURRENT_VERSION = int("260200"+"01"+"0")
+CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
+CURRENT_VERSION_FULLSTR = "26.2-beta"
 
 def fPreSetup():
     pass
@@ -29,9 +29,9 @@ def fFirstSetup():
 
 def fNextSetup():
     tellraw @a [{"text":"--- ","bold":true,"color":"#FFC000"},{"text":"[Working Backpacks]","bold":true,"color":"#FFFF00"},{"text":" ---","bold":true,"color":"#FFC000"},{"text":" \n"},{"translate":"ulg.bp.ad.updated","fallback":"was updated to version ","color":"#FFC000"},{"text":f"{CURRENT_VERSION_STR}","bold":true,"color":"#FFFF00","underlined":true,"hover_event":{"action":"show_text","value":f"{CURRENT_VERSION_FULLSTR}"}}]
-
 def fPostSetup():
     data modify storage ulg:backpack info set from storage ulg:backpack intick.tinfo
+    tellraw @a {"translate":"ulg.bp.empty","fallback":"Remember to update the required Resources as well","color":"red","bold":true}
     tellraw @a [{"text":"\n- ","color":"#FFC000"},{"translate":"ulg.bp.ad.help","fallback":"HELP","bold":true,"underlined":true,"color":"red","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"text":"WIKI","bold":true,"underlined":true,"color":"aqua","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"translate":"ulg.bp.ad.custom_backpacks","fallback":"Custom backpacks!","bold":true,"italic":true,"underlined":true,"color":"gold","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks/customize"}},{"text":" -","color":"#FFC000"}]
 
 load('BP_VERSION', CURRENT_VERSION, fSetup, fFirstSetup, fNextSetup, fPreSetup, fPostSetup)
