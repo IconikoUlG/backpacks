@@ -1,4 +1,5 @@
 from backpacks/access import fix25_conversions
+from @util/builders import wrap
 
 def __Model(model_id, layers, direct_transform={}):
     """
@@ -120,38 +121,6 @@ def __buildModifs():
                 )
             )
     return MODIFS
-
-TOGGLES = {
-    "CAN_PLACE_BACKPACKS": [1, 1],
-    "CAN_MODIFY_BACKPACKS": [1, 1],
-    "TABLE_BACKPACKS_TICK": [1, 1],
-    "NO_BOX_CHEAT": [1, 1],
-    "CAN_LOCK_BACKPACKS": [1, 1]
-}
-
-def load():
-    execute run function bpconfig:setup_toggles:
-        _loadToggles()
-    execute run function bpconfig:table_modifs:
-        _loadTableModifs()
-    function bpconfig:force_toggles:
-        raw ### TOGGLES ###
-        raw #
-        for key, value in TOGGLES.items():
-            scoreboard players set ('$'+key) ulg_gen value[0]
-            raw f"#{str(value[0])} is the default value for this toggle. Change is as needed"
-            raw #
-
-    _writejsons()
-
-def _loadToggles():
-    for key, value in TOGGLES.items():
-        execute unless score ('$'+key+"_V") ulg_gen matches (str(value[1])+"..") run scoreboard players set ('$'+key) ulg_gen (value[0])
-        scoreboard players set ('$'+key+"_V") ulg_gen value[1]
-
-def _loadTableModifs():
-    data modify storage ulg:backpack table_modifs set value (__buildModifs())
-
 
 def _writejsons():
     TABLES = {
@@ -343,3 +312,54 @@ def __LootTable(bp):
             }
         ]
         }
+
+
+TOGGLES = {
+    "CAN_PLACE_BACKPACKS": [1, 0, "Whether backpacks can be placed (\"benching\") or not Yes/No", {"yes":1,"no":0}],
+    "CAN_MODIFY_BACKPACKS": [1, 0, "Whether backpacks can be colored and modified Yes/No", {"yes":1,"no":0}],
+    "TABLE_BACKPACKS_TICK": [1, 0, "Whether benched backpacks do tick - Only set to false in case of low resource servers", {"default":1,"notick":0}],
+    "NO_BOX_CHEAT": [1, 0, "Whether players can put backpacks/shulker boxes/bundles inside backpacks NoCheat/YesCheat", {"nocheat":1,"yescheat":0}],
+    "LOCK_BACKPACKS": [1, 0, "Whether backpacks can be locked using the Lock item Yes/No", {"yes":1,"no":0}]
+}
+
+def load():
+    _loadToggles()
+    _loadTableModifs()
+
+    _writejsons()
+
+@wrap(bp:config/load_toggles)
+def _loadToggles():
+    for key, value in TOGGLES.items():
+        execute unless score ('$'+key+"_V") ulg_gen matches (str(value[1])+"..") run scoreboard players set ('$'+key) ulg_gen (value[0])
+        scoreboard players set ('$'+key+"_V") ulg_gen value[1]
+
+@wrap(bp:config/load_modifs)
+def _loadTableModifs():
+    data modify storage ulg:backpack table_modifs set value (__buildModifs())
+
+@wrap(bp:config/reset_toggles)
+def _resetToggles():
+    raw ### TOGGLES ###
+    raw #
+    for key, value in TOGGLES.items():
+        scoreboard players set ('$'+key) ulg_gen value[0]
+        # raw f"#{str(value[2])}"
+        # raw f"#{str(value[0])} is the default value for this toggle. Change is as needed"
+        raw #
+
+from ./setup_controller import CURRENT_VERSION_FULLSTR
+@wrap(bp:config/help)
+def _helpMessage():
+    tellraw @s ["",{"text":"Backpacks Datapack","bold":true,"color":"gold"},{"text":" Config Panel. ","color":"gold"},{"text":f"DP v{CURRENT_VERSION_FULLSTR}","color":"yellow"}]
+    tellraw @s ["",{"text":"You can configure some datapack settings via\n"},{"text":"/function","color":"yellow"},{"text":" bp:config/set/","color":"#D2A8FF"},{"text":"setting_name","color":"gold"},{"text":"/<option>","color":"#D2A8FF"},{"text":"\n\nSettings:"}]
+    for key, value in TOGGLES.items():
+        tellraw @s ["", {"text": f"{key.lower()}", "color": "gold"}, {"text": f" - {value[2]} - Default: {value[1]}", "color": "gray"}]
+    tellraw @s [{"text":"\n- ","color":"#FFC000"},{"text":"WIKI","bold":true,"underlined":true,"color":"aqua","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"translate":"ulg.bp.ad.donate","fallback":"DONATE","bold":true,"italic":true,"underlined":true,"color":"gold","click_event":{"action":"open_url","url":"https://paypal.me/coradonation"}},{"text":" -","color":"#FFC000"}]
+
+for key, value in TOGGLES.items():
+    # function (f"bp:config/set/{key.lower()}/default"):
+    #     scoreboard players set ('$'+key) ulg_gen value[0]
+    for option, optionV in value[3].items():
+        function (f"bp:config/set/{key.lower()}/{option}"):
+            scoreboard players set ('$'+key) ulg_gen optionV

@@ -1,4 +1,5 @@
 from bolt_expressions import Scoreboard, Data
+from @util/builders import wrap, get_wrapped_name
 
 def hasOwner(bpItem): # not working due to bolt expressions
     if bpItem.components."minecraft:custom_data".bp.Owner:
@@ -32,6 +33,13 @@ def checkOwner(bpItem,playerData):
     if not bpItem.components."minecraft:custom_data".bp.Owner:
         result = true
     return result
+
+# fCheckOwnerIfSuperYes = get_wrapped_name()
+# @wrap(fCheckOwnerIfSuperYes)
+# def _checkOwnerIfSuperYes(bpItem,playerData):
+#   unless score $LOCK_BACKPACKS ulg_gen matches 2.. run return 1
+#   if checkOwner(bpItem,playerData) == true:
+#     execute return 1
 
 import ./pather as pather
 recipe pather.makeJsonRecipePath('lock') {

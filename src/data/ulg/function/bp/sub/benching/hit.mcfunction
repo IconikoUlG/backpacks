@@ -1,5 +1,5 @@
 #say tryonattack
-from @builders import wrap, forcedef
+from @util/builders import wrap, forcedef
 
 @wrap(~/hit)
 def hit():

@@ -1,4 +1,4 @@
-from @builders import load
+from @util/builders import load
 import @configs as configs
 import @backpacks/access as backpacks
 
@@ -8,9 +8,9 @@ import @backpacks/access as backpacks
 # +
 # Fixes 0/1/2/3 .. 9
 # eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
-CURRENT_VERSION = int("260200"+"01"+"0")
+CURRENT_VERSION = int("260200"+"02"+"0")
 CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
-CURRENT_VERSION_FULLSTR = "26.2-beta"
+CURRENT_VERSION_FULLSTR = "26.2-beta2"
 
 def fPreSetup():
     pass
@@ -32,7 +32,7 @@ def fNextSetup():
 def fPostSetup():
     data modify storage ulg:backpack info set from storage ulg:backpack intick.tinfo
     tellraw @a {"translate":"ulg.bp.empty","fallback":"Remember to update the required Resources as well","color":"red","bold":true}
-    tellraw @a [{"text":"\n- ","color":"#FFC000"},{"translate":"ulg.bp.ad.help","fallback":"HELP","bold":true,"underlined":true,"color":"red","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"text":"WIKI","bold":true,"underlined":true,"color":"aqua","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"translate":"ulg.bp.ad.custom_backpacks","fallback":"Custom backpacks!","bold":true,"italic":true,"underlined":true,"color":"gold","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks/customize"}},{"text":" -","color":"#FFC000"}]
+    tellraw @a [{"text":"\n- ","color":"#FFC000"},{"translate":"ulg.bp.ad.help","fallback":"HELP","bold":true,"underlined":true,"color":"red","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"text":"WIKI","bold":true,"underlined":true,"color":"aqua","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"translate":"ulg.bp.ad.donate","fallback":"DONATE","bold":true,"italic":true,"underlined":true,"color":"gold","click_event":{"action":"open_url","url":"https://paypal.me/coradonation"}},{"text":" -","color":"#FFC000"}]
 
 load('BP_VERSION', CURRENT_VERSION, fSetup, fFirstSetup, fNextSetup, fPreSetup, fPostSetup)
 

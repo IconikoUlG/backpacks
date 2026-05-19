@@ -1,4 +1,4 @@
-from @builders import handleCondition
+from @util/builders import handleCondition
 
 function_tag minecraft:tick {"values": [(~/)]}
 
