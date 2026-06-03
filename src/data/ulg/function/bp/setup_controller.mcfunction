@@ -2,7 +2,7 @@ from @util/builders import load
 import @configs as configs
 import @backpacks/access as backpacks
 
-from @configs import CURRENT_VERSION_FULLSTR, CURRENT_VERSION_STR, CURRENT_VERSION
+from @configs import CURRENT_VERSION_FULLSTR, CURRENT_VERSION_STR, CURRENT_VERSION, BETA_NUMBER
 
 def fPreSetup():
     pass
@@ -25,6 +25,9 @@ def fPostSetup():
     data modify storage ulg:backpack info set from storage ulg:backpack intick.tinfo
     tellraw @a {"translate":"ulg.bp.empty","fallback":"Remember to update the required Resources as well","color":"red","bold":true}
     tellraw @a [{"text":"\n- ","color":"#FFC000"},{"translate":"ulg.bp.ad.help","fallback":"HELP","bold":true,"underlined":true,"color":"red","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"text":"WIKI","bold":true,"underlined":true,"color":"aqua","click_event":{"action":"open_url","url":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks"}},{"text":" - ","color":"#FFC000"},{"translate":"ulg.bp.ad.donate","fallback":"DONATE","bold":true,"italic":true,"underlined":true,"color":"gold","click_event":{"action":"open_url","url":"https://paypal.me/coradonation"}},{"text":" -","color":"#FFC000"}]
+    if BETA_NUMBER in range(1,99):
+        tellraw @a ["",{"text":"Backpacks & More","bold":true,"color":"yellow"},{"text":" - BETA","bold":true,"color":"gold"},{"text":"\nThis version of the 'Backpacks&More' datapack is experimental.\n\nCheck "},{"text":"HERE","underlined":true,"color":"green","clickEvent":{"action":"open_url","value":"https://modrinth.com/datapack/backpacksdp"}},{"text":" for the stable versions and updates.\n\n"},{"text":"Report any bug to my","color":"gold"},{"text":" ","color":"green"},{"text":"Discord","color":"blue","clickEvent":{"action":"open_url","value":"https://discord.com/invite/Q9xpaCtxGs"}},{"text":"\n"},{"text":"Thx a lot -UltroGhast","color":"yellow"}]
+
 
 load('BP_VERSION', CURRENT_VERSION, fSetup, fFirstSetup, fNextSetup, fPreSetup, fPostSetup)
 

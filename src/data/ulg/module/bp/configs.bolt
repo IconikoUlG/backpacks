@@ -7,7 +7,8 @@ from @util/builders import wrap
 # +
 # Fixes 0/1/2/3 .. 9
 # eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
-CURRENT_VERSION = int("260200"+"3"+"0")
+BETA_NUMBER = 3  # 99 is release
+CURRENT_VERSION = int("260200"+str(BETA_NUMBER).zfill(2)+"0")
 CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
 CURRENT_VERSION_FULLSTR = "26.2-beta3"
 PLUGIN_V = 26

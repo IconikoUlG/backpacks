@@ -23,6 +23,7 @@ title @a actionbar {"translate":"ulg.bp.empty","fallback":"The required Resource
 from @backpacks/plugin_socket import onload
 onload()
 
+
 unless score $ULG_BP_WORLDID ulg_gen matches 1..:
     store result score $ULG_BP_WORLDID ulg_gen run random value 1..99999
     scoreboard players set $ULG_BP_IDCOUNT ulg_gen 0
