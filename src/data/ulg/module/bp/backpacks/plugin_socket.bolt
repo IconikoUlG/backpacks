@@ -1,0 +1,41 @@
+from @configs import PLUGIN_V, CURRENT_VERSION_FULLSTR
+
+func_getv = (~/get_pluginv)
+function (func_getv):
+    raw return run backpacksdp_plugin:backpack_v
+
+func_checkv = (~/checkv)
+function (func_checkv):
+    scoreboard players reset $plugin_v ulg_gen
+    store result score $plugin_v ulg_gen run function (func_getv)
+    execute unless score $plugin_v ulg_gen matches (PLUGIN_V) run return fail
+    return 1
+
+func_altopen = (~/altopen)
+function (func_altopen):
+    execute unless function (func_checkv) run return fail
+    scoreboard players reset $plugin_altopen ulg_intick
+    execute store result score $plugin_altopen ulg_intick run return run function (~/run_ccommand):
+        raw return run backpacksdp_plugin:backpack_open
+    execute unless score $plugin_altopen ulg_intick matches 1.. run return fail
+    return 1
+
+from @sub/use_backpack import close
+func_forceclose = (~/forceclose)
+function (func_forceclose):
+    close()
+print("forceclose is : '",func_forceclose,"'")
+
+from @util/builders import wrap
+@wrap(~/onload)
+def onload():
+    if function (func_getv) run return:
+        unless score $plugin_v ulg_gen matches 1.. run function (func_checkv)
+        scoreboard players operation $plugin_v ulg_intick = $plugin_v ulg_gen
+        unless function (func_checkv):
+            tellraw @a f"Datapack 'Backpacks & More' version {CURRENT_VERSION_FULLSTR} expects plugin version {PLUGIN_V}"
+        unless score $plugin_v ulg_intick = $plugin_v ulg_gen:
+            tellraw @a f"Plugin updated to version {PLUGIN_V}"
+
+    if score $plugin_v ulg_gen matches 1..:
+        scoreboard players reset $plugin_v ulg_gen

@@ -5,7 +5,7 @@ function_tag minecraft:tick {"values": [(~/)]}
 def coasClick():
     if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
         function ulg:bp/sub/use_backpack
-    unless data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV if data entity @s SelectedItem   .components."minecraft:custom_data".bp.newV:
+    unless data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV if data entity @s SelectedItem.components."minecraft:custom_data".bp.newV:
         item replace entity @s weapon.offhand from entity @s weapon.mainhand
         item replace entity @s weapon.mainhand with minecraft:air
     if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:

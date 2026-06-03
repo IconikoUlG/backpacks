@@ -2,6 +2,7 @@
 from @util/builders import genTickTag, recallableFunction
 from @jsons import IM_set_open, IM_set_close, IM_set_inventory, _P_shulker_boxes_check, _P_bundles_check, _P_backpacks_check, P_boxes_check
 from bolt_expressions import Data
+from @backpacks/plugin_socket import func_altopen, func_checkv
 
 #say executed: use_backpack
 
@@ -22,16 +23,13 @@ def _inventorySwitch():
 switch_inventory = recallableFunction(_inventorySwitch)
 
 def _fClose():
-    data remove storage ulg:backpack intick
-
-    # data modify storage ulg:backpack intick.isLegacyBackpack set from entity @s equipment.offhand.components."minecraft:custom_data".ulg.isLegacyBackpack
-    # data modify storage ulg:backpack intick.BackPackName set from entity @s equipment.offhand.components."minecraft:custom_data".display.Name
-
-    data modify storage ulg:backpack intick.BackPackInventorySource set from entity @s equipment.offhand.components."minecraft:custom_data".bp.Inventory
-    switch_inventory()
-
     item modify entity @s weapon.offhand IM_set_close()
-    item modify entity @s weapon.offhand IM_set_inventory()
+
+    unless function (func_checkv):
+        data remove storage ulg:backpack intick
+        data modify storage ulg:backpack intick.BackPackInventorySource set from entity @s equipment.offhand.components."minecraft:custom_data".bp.Inventory
+        switch_inventory()
+        item modify entity @s weapon.offhand IM_set_inventory()
 
     at @s run playsound minecraft:item.lead.untied master @s ~ ~ ~ 0.3 0.6 0.2
     scoreboard players reset @s ulg_bp_using
@@ -42,8 +40,8 @@ def _fClose():
 
 close = recallableFunction(_fClose)
 
-
 def _fTryClose():
+    if function (func_checkv) run return fail
     if score $NO_BOX_CHEAT ulg_gen matches 1.. run return:
         #say no box cheat check
         if predicate _P_backpacks_check() run title @s[tag=!global.ignore.gui] actionbar {"translate":"ulg.alert.nodoublebackpack","color":"#9D6F3D"}
@@ -68,13 +66,12 @@ def _fOpen():
         return run title @s actionbar {"translate": "ulg.alert.not_yours", "fallback": "This backpack is not yours!", "color": "#ff1e00"}
 
     data remove storage ulg:backpack intick
-    data modify storage ulg:backpack intick.BackPackName set from entity @s equipment.offhand.components."minecraft:custom_data".display.Name
-
     data modify storage ulg:backpack intick.BackPackInventorySource set from entity @s equipment.offhand.components."minecraft:custom_data".bp.Inventory
-    switch_inventory()
-
     item modify entity @s weapon.offhand IM_set_open()
-    item modify entity @s weapon.offhand IM_set_inventory()
+
+    unless function (func_altopen):
+        switch_inventory()
+        item modify entity @s weapon.offhand IM_set_inventory()
 
     at @s run playsound minecraft:item.lead.tied master @s ~ ~ ~ 0.3 0.6 0.2
 

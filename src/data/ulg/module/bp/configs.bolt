@@ -1,6 +1,17 @@
 from backpacks/access import fix25_conversions
 from @util/builders import wrap
 
+#2025/11 -> 2511
+# +
+# Versioning, eg beta2 -> 02, release -> 99
+# +
+# Fixes 0/1/2/3 .. 9
+# eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
+CURRENT_VERSION = int("260200"+"3"+"0")
+CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
+CURRENT_VERSION_FULLSTR = "26.2-beta3"
+PLUGIN_V = 26
+
 def __Model(model_id, layers, direct_transform={}):
     """
     Build a model compound dictionary.
@@ -319,7 +330,7 @@ TOGGLES = {
     "CAN_MODIFY_BACKPACKS": [1, 0, "Whether backpacks can be colored and modified Yes/No", {"yes":1,"no":0}],
     "TABLE_BACKPACKS_TICK": [1, 0, "Whether benched backpacks do tick - Only set to false in case of low resource servers", {"default":1,"notick":0}],
     "NO_BOX_CHEAT": [1, 0, "Whether players can put backpacks/shulker boxes/bundles inside backpacks NoCheat/YesCheat", {"nocheat":1,"yescheat":0}],
-    "LOCK_BACKPACKS": [1, 0, "Whether backpacks can be locked using the Lock item Yes/No", {"yes":1,"no":0}]
+    "LOCK_BACKPACKS": [1, 0, "Whether backpacks can be locked using the Lock item Yes/No/SuperYes", {"yes":1,"no":0,"superyes":2}]
 }
 
 def load():

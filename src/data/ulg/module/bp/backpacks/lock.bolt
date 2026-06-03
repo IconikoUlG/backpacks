@@ -40,6 +40,14 @@ def checkOwner(bpItem,playerData):
 #   unless score $LOCK_BACKPACKS ulg_gen matches 2.. run return 1
 #   if checkOwner(bpItem,playerData) == true:
 #     execute return 1
+# fCheckOwnerNearIfSuperYes = get_wrapped_name()
+# @wrap(fCheckOwnerNearIfSuperYes)
+# def _checkOwnerNearIfSuperYes(bpItem):
+#   unless score $LOCK_BACKPACKS ulg_gen matches 2.. run return 1
+
+#   function (~/m_findp):
+#     $return run execute if entity @a[nbt={UUID:$(Owner)},distance=..7]
+#   return run function (~/m_findp) with bpItem
 
 import ./pather as pather
 recipe pather.makeJsonRecipePath('lock') {

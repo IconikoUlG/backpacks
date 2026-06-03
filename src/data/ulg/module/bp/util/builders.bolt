@@ -18,7 +18,6 @@ def load(datapackId : str, version : int, setupFunc = None, firstSetupFunc = Non
             setupFunc()
             if (firstSetupFunc != None):
                 execute run function ~/split_setups:
-                    say SPLIT SETUPS
                     execute unless score ('$'+datapackId) ulg_gen matches 0.. run return run function ~/first_setup:
                         firstSetupFunc()
                     if (nextSetupFunc != None):

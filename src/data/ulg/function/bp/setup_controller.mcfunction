@@ -2,15 +2,7 @@ from @util/builders import load
 import @configs as configs
 import @backpacks/access as backpacks
 
-#2025/11 -> 2511
-# +
-# Versioning, eg beta2 -> 02, release -> 99
-# +
-# Fixes 0/1/2/3 .. 9
-# eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
-CURRENT_VERSION = int("260200"+"02"+"0")
-CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
-CURRENT_VERSION_FULLSTR = "26.2-beta2"
+from @configs import CURRENT_VERSION_FULLSTR, CURRENT_VERSION_STR, CURRENT_VERSION
 
 def fPreSetup():
     pass
