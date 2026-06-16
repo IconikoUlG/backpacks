@@ -4,7 +4,7 @@ from @jsons import IM_set_open, IM_set_close, IM_set_inventory, _P_shulker_boxes
 from bolt_expressions import Data
 from @backpacks/plugin_socket import func_altopen, func_checkv
 
-#say executed: use_backpack
+# say executed: use_backpack
 
 def _inventorySwitch():
     in minecraft:overworld positioned 829999 -64 829999:
