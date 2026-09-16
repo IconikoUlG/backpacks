@@ -1,55 +1,52 @@
 import secrets
 import string
 
-def IM_make_mouldy():
-    from ./backpacks/access import getBackpack
-    mouldy_backpack = getBackpack('mouldy')
-    return defineIM([
-        {"function": "minecraft:set_components", "components": {"minecraft:item_model": mouldy_backpack.ItemModelPath()}},
-        {"function": "minecraft:set_lore", "entity": "this", "lore": [{"translate": "ulg.lore.oldversionbackpack", "color": "red", "italic": false}], "mode": "replace_all"},
-        {"function": "minecraft:set_name", "name": {"translate": mouldy_backpack.Translation(), "color": "gray", "italic": true}}
-    ])
-
 def IM_set_open():
-    return defineIM([
-        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "true", "target": "bp.Opened", "op": "replace"}]},
-        {"function": "minecraft:set_custom_model_data", "strings": {"values": ["opened"], "mode": "replace_all"}}
-    ])
+    return defineIM({
+  "type": "minecraft:sequence",
+  "functions": [
+        {"type": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "true", "target": "bp.Opened", "op": "replace"}]},
+        {"type": "minecraft:set_custom_model_data", "strings": {"values": ["opened"], "mode": "replace_all"}}
+    ]})
 
 def IM_set_close():
-    return defineIM([
-        {"function": "minecraft:set_custom_model_data", "strings": {"values": ["closed"], "mode": "replace_all"}},
-        {"function": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "false", "target": "bp.Opened", "op": "replace"}]}
-    ])
+    return defineIM({
+  "type": "minecraft:sequence",
+  "functions": [
+        {"type": "minecraft:set_custom_model_data", "strings": {"values": ["closed"], "mode": "replace_all"}},
+        {"type": "minecraft:copy_custom_data", "source": {"type": "minecraft:storage", "source": "ulg:backpack"}, "ops": [{"source": "false", "target": "bp.Opened", "op": "replace"}]}
+    ]})
 
 def IM_set_inventory():
-    return defineIM([
+    return defineIM({
+  "type": "minecraft:sequence",
+  "functions": [
         {
-            "function": "minecraft:copy_custom_data",
+            "type": "minecraft:copy_custom_data",
             "source": {"type": "minecraft:storage", "source": "ulg:backpack"},
             "ops": [{"source": "intick.BackPackInventory", "target": "bp.Inventory", "op": "replace"}]
         }
-    ])
+    ]})
 
 def P_bp_in_offhand():
-    return defineP({"condition": "minecraft:entity_properties", "entity": "this", "predicate": {"equipment": {"offhand": {"components": {"minecraft:custom_data": {"bp": {"Opened": true}}}}}}})
+    return defineP({"type": "minecraft:entity_properties", "entity": "this", "predicate": {"equipment": {"offhand": {"components": {"minecraft:custom_data": {"bp": {"Opened": true}}}}}}})
 
 def P_is_sneaking():
-    return defineP({"condition":"minecraft:entity_properties","entity":"this","predicate":{"flags":{"is_sneaking":true}}})
+    return defineP({"type":"minecraft:entity_properties","entity":"this","predicate":{"flags":{"is_sneaking":true}}})
 
 def P_chance(chance=0.5):
-    return defineP({"condition": "minecraft:random_chance", "chance": chance})
+    return defineP({"type": "minecraft:random_chance", "chance": chance})
 
 def __buildItemCheckInInventoryPredicate(containerData):
     terms = []
     for n in range(9,36):
         terms.append({
-            "condition": "minecraft:entity_properties", "entity": "this", "predicate": {
+            "type": "minecraft:entity_properties", "entity": "this", "predicate": {
                 "slots": {f"container.{n}": containerData}
                 }
             })
     return {
-        "condition": "minecraft:any_of",
+        "type": "minecraft:any_of",
         "terms": terms
     }
 
@@ -64,16 +61,16 @@ def _P_shulker_boxes_check():
 
 def P_boxes_check():
     return defineP({
-        "condition": "minecraft:any_of",
+        "type": "minecraft:any_of",
         "terms": [
-            {"condition": "minecraft:reference","name": _P_backpacks_check()},
-            {"condition": "minecraft:reference","name": _P_bundles_check()},
-            {"condition": "minecraft:reference","name": _P_shulker_boxes_check()}
+            _P_backpacks_check(),
+            _P_bundles_check(),
+            _P_shulker_boxes_check()
         ]
     })
 
 def LT_drop_head():
-    return defineLT({type:"minecraft:generic",pools:[{rolls:1,entries:[{type:"item",name:"player_head",functions:[{function:"minecraft:set_custom_data",tag:{ulg:{id:"intick"}}},{function:"fill_player_head",entity:"this"}]}]}]})
+    return defineLT({type:"minecraft:generic",pools:[{rolls:1,entries:[{type:"item",name:"player_head",modifier:[{type:"minecraft:set_custom_data",tag:{ulg:{id:"intick"}}},{type:"fill_player_head",entity:"this"}]}]}]})
 
 def defineP(obj):
     jdef = __associate(obj)

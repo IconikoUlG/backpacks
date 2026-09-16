@@ -1,11 +1,11 @@
-from @util/builders import handleCondition
+from @util/builders import handleCondition, wrap
 
 function_tag minecraft:tick {"values": [(~/)]}
 
+@wrap()
 def coasClick():
-    if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV:
-        function ulg:bp/sub/use_backpack
-    unless data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV if data entity @s SelectedItem.components."minecraft:custom_data".bp.newV:
+    if data entity @s equipment.offhand.components."minecraft:custom_data".bp.newV run return run function ulg:bp/sub/use_backpack
+    unless data entity @s equipment.offhand.id if data entity @s SelectedItem.components."minecraft:custom_data".bp.newV run return:
         item replace entity @s weapon.offhand from entity @s weapon.mainhand
         item replace entity @s weapon.mainhand with minecraft:air
     if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
@@ -13,12 +13,6 @@ def coasClick():
             tellraw @s {"translate":"ulg.alert.oldversionbackpack","color":"#ed7666","clickEvent": {"action":"open_url","value":"https://sites.google.com/view/ultroghasthub/datapacks/backpacks/open_mouldy_backpack","underlined":true}}
 
 def playerTick():
-    from @jsons import IM_make_mouldy #, IM_append_slots_lore
-
-    if data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack:
-        unless data entity @s equipment.offhand.components."minecraft:custom_data".ulg.BackPack.newV:
-            item modify entity @s weapon.offhand IM_make_mouldy()
-
     if data entity @s Inventory[].components."minecraft:custom_data".bp{Opened:1b}:
         unless data entity @s equipment.offhand.components."minecraft:custom_data".bp{Opened:1b}:
             function ulg:bp/sub/convert_openedbackpacks/player_inventory_case

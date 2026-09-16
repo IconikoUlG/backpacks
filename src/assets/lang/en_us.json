@@ -38,7 +38,7 @@
     "ulg.item.backpack.chest": "Chest Backpack",
     "ulg.item.backpack.chest_christmas": "Christmas Backpack",
     "ulg.alert.no_drop_open": "You can't drop the backpack, it's still open!",
-    "ulg.bp.empty": "",
+    "ulg.bp.empty": " ",
     "ulg.lore.owner": "Owner: %s",
     "ulg.item.backpack.lock": "Backpack Lock",
     "ulg.alert.not_yours": "This backpack is not yours!",

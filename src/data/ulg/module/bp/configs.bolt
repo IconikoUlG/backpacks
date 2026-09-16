@@ -7,12 +7,12 @@ from @util/builders import wrap
 # +
 # Fixes 0/1/2/3 .. 9
 # eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
-DPVERSION = "260200"
+DPVERSION = "260300"
 BETA_NUMBER = 99  # 99 is release
 FIX_NUMBER = 0
 CURRENT_VERSION = int(DPVERSION+str(BETA_NUMBER).zfill(2)+str(FIX_NUMBER))
-CURRENT_VERSION_STR = "26.2" # beta99 = RELEASE
-CURRENT_VERSION_FULLSTR = "26.2"
+CURRENT_VERSION_STR = "26.3"
+CURRENT_VERSION_FULLSTR = "26.3"
 PLUGIN_V = 26
 
 def __Model(model_id, layers, direct_transform={}):
@@ -105,15 +105,16 @@ def __buildModifs():
                 **mc_colors_formatted("minecraft:{color}_dye")
             ),
             __IGroup("ores", defaultForce=100,
-                minecraft_iron_ingot=(240, 249, 255), minecraft_gold_ingot=(255, 215, 0),
-                minecraft_iron_nugget=(240, 249, 255, 60), minecraft_gold_nugget=(255, 215, 0, 60),
+                minecraft_iron_ingot=(240, 249, 255), minecraft_gold_ingot=(255, 242, 64),
+                minecraft_iron_nugget=(240, 249, 255, 60), minecraft_gold_nugget=(255, 242, 64, 60),
                 minecraft_amethyst_shard=(204, 51, 255, 80), minecraft_prismarine_crystals=(38, 230, 255, 80)
             ),
             __IGroup("woods", defaultForce=100,
                 minecraft_oak_planks = (167, 110, 31), minecraft_spruce_planks = (115, 70, 28), minecraft_birch_planks = (222, 199, 129),
                 minecraft_jungle_planks = (173, 124, 75), minecraft_acacia_planks = (209, 91, 27), minecraft_dark_oak_planks = (87, 46, 16),
                 minecraft_mangrove_planks = (110, 32, 22), minecraft_cherry_planks = (222, 133, 163), minecraft_crimson_planks = (140, 15, 96),
-                minecraft_warped_planks = (0, 161, 161), minecraft_pale_oak_planks = (232, 222, 209),
+                minecraft_warped_planks = (0, 161, 161), minecraft_pale_oak_planks = (232, 222, 209), minecraft_poplar_planks = (176, 165, 150),
+                minecraft_bamboo_planks = (218, 219, 124)
             ),
             __IGroup("carpets", defaultForce=95,
                 **mc_colors_formatted("minecraft:{color}_carpet")
@@ -288,30 +289,30 @@ def __LootTable(bp):
                 {
                 "type": "minecraft:item",
                 "name": "minecraft:carrot_on_a_stick",
-                "functions": [
+                "modifier": [
                     {
-                    "function": "minecraft:set_components",
+                    "type": "minecraft:set_components",
                     "components": {
                         "minecraft:item_model": bp.ItemModelPath()
                     }
                     },
                     {
-                    "function": "minecraft:set_custom_data",
+                    "type": "minecraft:set_custom_data",
                     "tag": {"bp":bp.Nbt()}
                     },
                     {
-                    "function": "minecraft:set_custom_model_data",
+                    "type": "minecraft:set_custom_model_data",
                     "colors": {
                         "values": list(map(packRgbArr,map(extractColor,_layersToTints(bp.ModelLayers())))),
                         "mode": "replace_all"
                     }
                     },
                     {
-                    "function": "minecraft:set_count",
+                    "type": "minecraft:set_count",
                     "count": 1
                     },
                     {
-                    "function": "minecraft:set_name",
+                    "type": "minecraft:set_name",
                     "entity": "this",
                     "target": "item_name",
                     "name": {

@@ -1,8 +1,8 @@
 {
   "pack": {
-    "pack_format": 96,
-    "min_format": [95, 0],
-    "max_format": [110, 1],
-    "description": "Working Backpacks 26.2\n - by §1Ultro§9Ghast"
+    "pack_format": 108,
+    "min_format": [108, 0],
+    "max_format": [121, 0],
+    "description": "Working Backpacks 26.3\n - by §1Ultro§9Ghast"
   }
 }

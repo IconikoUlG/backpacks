@@ -138,11 +138,14 @@ def debug(arg=None):
     return decorator
 
 def get_wrapped_name():
-    return (str(./wrapped) + '/' + _random_uuid_16())
+    wrapped_name = (str(./wrapped) + '/' + _random_uuid_16())
+    return wrapped_name
 
 __declaredNamedFuncs = []
 def wrap(name=None, doreturn=False):
+    print("before:", name)
     name = name or (get_wrapped_name())
+    print("after:", name)
     def decorator(func):
         __declaredNamedFuncs.append(name)
         function (name):
