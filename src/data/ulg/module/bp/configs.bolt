@@ -9,10 +9,10 @@ from @util/builders import wrap
 # eg 260101991 -> 26.1.1 (or ) + Release (99) + Fix1 (1)
 DPVERSION = "260300"
 BETA_NUMBER = 99  # 99 is release
-FIX_NUMBER = 0
+FIX_NUMBER = 1
 CURRENT_VERSION = int(DPVERSION+str(BETA_NUMBER).zfill(2)+str(FIX_NUMBER))
 CURRENT_VERSION_STR = "26.3"
-CURRENT_VERSION_FULLSTR = "26.3"
+CURRENT_VERSION_FULLSTR = "26.3-f1"
 PLUGIN_V = 26
 
 def __Model(model_id, layers, direct_transform={}):

@@ -34,9 +34,9 @@ class JsonModels:
 def _WriteAutoModels(obj) -> JsonModels:
         from ./pather import makeJsonModelsPath
         model_parent = obj.model_parent
-        item_model = None
+        item_uimodel = None
         if (obj.HasItemModel()):
-            item_model ={
+            item_uimodel ={
                 "parent": "minecraft:item/generated",
                 "textures": {
                     "layer0": "ulg_bp/item/"+obj.Id()
@@ -55,7 +55,7 @@ def _WriteAutoModels(obj) -> JsonModels:
                     "backpack": "ulg_bp/"+obj.Id()
                 }
             },
-            item = (item_model)
+            item = (item_uimodel)
         )
         
 class Backpack():

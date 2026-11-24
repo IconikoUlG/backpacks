@@ -225,8 +225,15 @@ mouldy = Backpack(
     hasItemModel = True
 )
 
+explorer_og = Backpack(
+    id="explorer_og",
+    translation="ulg.item.backpack.explorer",
+    fallbackName="Unique Explorer Backpack",
+    hasItemModel = True
+)
+
 def getAll():
-    return [explorer, rainbow, camping, vintage, mouldy, chest_normal, chest_copper, chest_christmas1, chest_christmas2]
+    return [explorer, rainbow, camping, vintage, mouldy, chest_normal, chest_copper, chest_christmas1, chest_christmas2, explorer_og]
 
 def getMainVariants():
     return [explorer, camping, chest_normal]
